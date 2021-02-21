@@ -1,0 +1,22 @@
+version: "3"
+services:
+  react-app:
+    image: react-app-dev
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./admin/:/usr/src/app
+      - /usr/src/app/node_modules
+  api-server:
+    image: api-server
+    ports:
+      - '5000:5000'
+    env_file: ./backend/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - thanhchi-admin
+networks:
+  thanhchi-admin:
+    driver: bridge

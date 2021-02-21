@@ -1,0 +1,31 @@
+version: "3"
+services:
+  admin-app:
+    image: admin-app-production:${ENV}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - thanhchi-admin
+  api-server:
+    image: api-server
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    env_file: ./backend/config/${ENV}.env
+    networks:
+      - thanhchi-admin
+networks:
+  thanhchi-admin:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
+  caddy-data:
+    driver: local
+  caddy-config:
+    driver: local
