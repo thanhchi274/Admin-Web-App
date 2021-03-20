@@ -2,17 +2,12 @@
 @import "./assets/scss/icons.scss";
 
 //import Light Theme
-@import "./assets/scss/bootstrap.scss";
-@import "./assets/scss/app.scss";
+// @import "./assets/scss/bootstrap.scss";
+// @import "./assets/scss/app.scss";
 
 //Import Dark theme
-// @import "./assets/scss/bootstrap-dark.scss";
-// @import "./assets/scss/app-dark.scss";
-
-// RTL mode
-// @import "./assets/scss/bootstrap.scss";
-// @import "./assets/scss/app-rtl.scss";
-
+@import "./assets/scss/bootstrap-dark.scss";
+@import "./assets/scss/app-dark.scss";
 
 .accordian-bg-products {
     background-color: $gray-300;

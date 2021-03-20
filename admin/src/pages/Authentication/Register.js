@@ -73,33 +73,24 @@ handleSubmit(event, values) {
                                                         <Label htmlFor="useremail">Email</Label>
                                                         <AvField name="email"  value={this.state.email} validate={{email: true, required: true}} type="email" className="form-control" id="useremail" placeholder="Enter email"/>
                                                     </FormGroup>
-                    
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-user-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="username">Username</Label>
                                                         <AvField name="username"  value={this.state.username} type="text" className="form-control" id="username" placeholder="Enter username"/>
                                                     </FormGroup>
-                            
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-lock-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="userpassword">Password</Label>
                                                         <AvField name="password"  value={this.state.password} type="password" className="form-control" id="userpassword" placeholder="Enter password"/>
                                                     </FormGroup>
-                            
-
                                                     <div className="text-center">
                                                         <Button color="primary" className="w-md waves-effect waves-light" type="submit">{this.props.loading ? "Loading ..." : "Register"}</Button>
                                                     </div>
 
                                                     <div className="mt-4 text-center">
-                                                        <p className="mb-0">By registering you agree to the Nazox <Link to="#" className="text-primary">Terms of Use</Link></p>
+                                                        <p className="mb-0">By registering you agree to the Thanh Chi Clothing <Link to="#" className="text-primary">Terms of Use</Link></p>
                                                     </div>
                                                 </AvForm>
-                                            </div>
-
-                                            <div className="mt-5 text-center">
-                                                <p>Already have an account ? <Link to="/login" className="font-weight-medium text-primary"> Login</Link> </p>
-                                                <p>© 2020 Nazox. Crafted with <i className="mdi mdi-heart text-danger"></i> by Themesdesign</p>
                                             </div>
                                         </div>
 
