@@ -30,7 +30,7 @@ class Chat extends Component {
         super(props);
         this.state={
             breadcrumbItems : [
-                { title : "Nazox", link : "#" },
+                { title : "Thanh Chi Clothing", link : "#" },
                 { title : "Chat", link : "#" },
             ],
             chats: [

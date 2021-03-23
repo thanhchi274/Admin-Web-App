@@ -16,7 +16,7 @@ class Calendar extends Component {
         super(props);
         this.state={
             breadcrumbItems : [
-                { title : "Nazox", link : "#" },
+                { title : "Thanh Chi Clothing", link : "#" },
                 { title : "Calendar", link : "#" },
             ],
             calendarWeekends: true,

@@ -52,25 +52,22 @@ class Login extends Component {
                                                 </div>
     
                                                 <h4 className="font-size-18 mt-4">Welcome Back !</h4>
-                                                <p className="text-muted">Sign in to continue to Nazox.</p>
+                                                <p className="text-muted">Sign in to continue to Thanh Chi Clothing.</p>
                                             </div>
 
 
                                             <div className="p-2 mt-5">
                                                 <AvForm className="form-horizontal" >
-                    
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-user-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="username">Username</Label>
                                                         <AvField name="username" type="text" className="form-control" id="username" validate={{email: true, required: true}} placeholder="Enter username"/>
                                                     </FormGroup>
-                            
                                                     <FormGroup className="auth-form-group-custom mb-4">
                                                         <i className="ri-lock-2-line auti-custom-input-icon"></i>
                                                         <Label htmlFor="userpassword">Password</Label>
                                                         <AvField name="password" type="password" className="form-control" id="userpassword" placeholder="Enter password"/>
                                                     </FormGroup>
-                            
                                                     <div className="custom-control custom-checkbox">
                                                         <Input type="checkbox" className="custom-control-input" id="customControlInline"/>
                                                         <Label className="custom-control-label" htmlFor="customControlInline">Remember me</Label>

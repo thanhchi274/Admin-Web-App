@@ -44,7 +44,7 @@ class Register extends Component {
                                                 </div>
     
                                                 <h4 className="font-size-18 mt-4">Register account</h4>
-                                                <p className="text-muted">Get your free Nazox account now.</p>
+                                                <p className="text-muted">Get your free Thanh Chi Clothing account now.</p>
                                             </div>
 
                                             <div className="p-2 mt-5">
@@ -74,7 +74,7 @@ class Register extends Component {
                                                     </div>
 
                                                     <div className="mt-4 text-center">
-                                                        <p className="mb-0">By registering you agree to the Nazox <Link to="#" className="text-primary">Terms of Use</Link></p>
+                                                        <p className="mb-0">By registering you agree to the Thanh Chi Clothing <Link to="#" className="text-primary">Terms of Use</Link></p>
                                                     </div>
                                                 </AvForm>
                                             </div>

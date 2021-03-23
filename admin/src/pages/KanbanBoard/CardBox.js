@@ -38,7 +38,7 @@ class CardBox extends Component {
                                                                                         {member.name.charAt(0)}
                                                                                     </span>
                                                                                 </div>
-                                                                            :   <img src={member.img} className="rounded-circle avatar-xs" alt="Nazox"/>
+                                                                            :   <img src={member.img} className="rounded-circle avatar-xs" alt="Thanh Chi Clothing"/>
                                                                         }
                                                                     </Link>
                                                                     <UncontrolledTooltip target={"memberTooltip"+member.id} placement="top">

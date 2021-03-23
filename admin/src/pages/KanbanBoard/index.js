@@ -159,7 +159,7 @@ class IndexKanban extends Component {
                                         <img src={logosmlight} alt="" className="avatar-xs"/>
                                     </div>
                                     <Media body>
-                                        <h5>Nazox admin Dashboard</h5>
+                                        <h5>Thanh Chi Clothing admin Dashboard</h5>
                                         <span className="badge badge-soft-success">Open</span>
                                     </Media>
                                 </Media>
@@ -169,7 +169,7 @@ class IndexKanban extends Component {
                                     <ul className="list-inline mb-0">
                                         <li className="list-inline-item">
                                             <Link to="#" className="d-inline-block" id="member1">
-                                                <img src={avatar2} className="rounded-circle avatar-xs" alt="Nazox"/>
+                                                <img src={avatar2} className="rounded-circle avatar-xs" alt="Thanh Chi Clothing"/>
                                             </Link>
                                             <UncontrolledTooltip target="member1" placement="top">
                                                 Aaron Williams
@@ -189,7 +189,7 @@ class IndexKanban extends Component {
                                         </li>
                                         <li className="list-inline-item">
                                             <Link to="#" className="d-inline-block" id="member3">
-                                                <img src={avatar4} className="rounded-circle avatar-xs" alt="Nazox"/>
+                                                <img src={avatar4} className="rounded-circle avatar-xs" alt="Thanh Chi Clothing"/>
                                             </Link>
                                             <UncontrolledTooltip target="member3" placement="top">
                                             Carole Connolly

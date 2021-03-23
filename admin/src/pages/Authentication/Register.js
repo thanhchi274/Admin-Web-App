@@ -58,7 +58,7 @@ handleSubmit(event, values) {
                                                 </div>
     
                                                 <h4 className="font-size-18 mt-4">Register account</h4>
-                                                <p className="text-muted">Get your free Nazox account now.</p>
+                                                <p className="text-muted">Get your free Thanh Chi Clothing account now.</p>
                                             </div>
 
                                             {this.props.user && <Alert color="success">Registration Done Successfully.</Alert>}

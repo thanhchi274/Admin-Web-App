@@ -25,9 +25,6 @@ import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 //Import i18n
 import { withTranslation } from "react-i18next";
 
-//Import Megamenu
-import MegaMenu from "./MegaMenu";
-
 // Redux Store
 import { toggleRightSidebar } from "../../store/actions";
 
@@ -53,7 +50,6 @@ class Header extends Component {
       isSocialPf: false
     };
     this.toggleMenu = this.toggleMenu.bind(this);
-    this.toggleRightbar = this.toggleRightbar.bind(this);
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
   }
   /**
@@ -62,15 +58,6 @@ class Header extends Component {
   toggleMenu() {
     this.props.toggleMenuCallback();
   }
-
-  /**
-   * Toggles the sidebar
-   */
-  toggleRightbar() {
-    this.props.toggleRightSidebar();
-  }
-
-
   toggleFullscreen() {
     if (
       !document.fullscreenElement &&
@@ -128,8 +115,6 @@ class Header extends Component {
                         <Button size="sm" color="none" type="button" onClick={this.toggleMenu} className="px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
                             <i className="ri-menu-2-line align-middle"></i>
                         </Button>
-
-                       
                         <Form className="app-search d-none d-lg-block">
                             <div className="position-relative">
                                 <Input type="text" className="form-control" placeholder={this.props.t('Search')}/>
@@ -137,7 +122,6 @@ class Header extends Component {
                             </div>
                         </Form>
 
-                        <MegaMenu/>
                     </div>
 
                       <div className="d-flex">
@@ -224,13 +208,6 @@ class Header extends Component {
                         <NotificationDropdown/>
 
                         <ProfileMenu/>
-
-                        <div className="dropdown d-inline-block">
-                            <Button color="none" onClick={this.toggleRightbar} type="button" className="header-item noti-icon right-bar-toggle waves-effect">
-                                <i className="ri-settings-2-line"></i>
-                            </Button>
-                        </div>
-            
                     </div>
                 </div>
             </header>

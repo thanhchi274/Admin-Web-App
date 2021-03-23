@@ -17,7 +17,7 @@ import { ReactComponent as Logo } from "../../assets/SVG/crown.svg";
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {  username : "admin@themesdesign.in", password : "123456" }
+        this.state = {  username : "admin@admin.in", password : "123456" }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -56,7 +56,7 @@ class Login extends Component {
                                                     <Link to="/" className="logo"><img src={Logo} height="20" alt="logo"/></Link>
                                                 </div>
                                                 <h4 className="font-size-18 mt-4">Welcome Back !</h4>
-                                                <p className="text-muted">Sign in to continue to Nazox.</p>
+                                                <p className="text-muted">Sign in to continue to Thanh Chi Clothing.</p>
                                             </div>
                                             {this.props.loginError && this.props.loginError ? <Alert color="danger">{this.props.loginError}</Alert> : null }
                                             <div className="p-2 mt-5">

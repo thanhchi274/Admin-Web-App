@@ -20,7 +20,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             breadcrumbItems : [
-                { title : "Nazox", link : "#" },
+                { title : "Thanh Chi Clothing", link : "#" },
                 { title : "Dashboard", link : "#" },
             ],
             reports : [
