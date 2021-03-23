@@ -125,6 +125,7 @@ class SidebarContent extends Component {
                                     <li><Link to="ecommerce-orders">{this.props.t('Orders')}</Link></li>
                                     <li><Link to="ecommerce-customers">{this.props.t('Customers')}</Link></li>
                                     <li><Link to="ecommerce-cart">{this.props.t('Cart')}</Link></li>
+                                    <li><Link to="ecommerce-checkout">{this.props.t('CheckOut')}</Link></li>
                                     <li><Link to="ecommerce-add-product">{this.props.t('Add Product')}</Link></li>
                                 </ul>
                             </li>

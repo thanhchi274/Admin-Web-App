@@ -163,7 +163,7 @@ class Customers extends Component {
                                                         <th>Customer</th>
                                                         <th>Email</th>
                                                         <th>Phone</th>
-                                                        <th>Wallet Balance</th>
+                                                        <th>Money Paid</th>
                                                         <th>Joining Date</th>
                                                         <th style={{width:"120px"}}>Action</th>
                                                     </tr>
@@ -272,13 +272,13 @@ class Customers extends Component {
 
                                         <Col lg={4}>
                                         <FormGroup>
-                                            <Label htmlFor="email">Wallet Balance</Label>
+                                            <Label htmlFor="email">Money Paid</Label>
                                             <AvField
                                             name="wBalance"
                                             type="number"
                                             className="form-control"
                                             id="wBalance"
-                                            placeholder="Wallet Balance"
+                                            placeholder="Money Paid"
                                             required
                                             />
                                         </FormGroup>

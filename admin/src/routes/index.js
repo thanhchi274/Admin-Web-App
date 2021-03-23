@@ -23,6 +23,7 @@ import ProductDetail from "../pages/Ecommerce/ProductDetail";
 import Orders from "../pages/Ecommerce/Orders";
 import Customers from "../pages/Ecommerce/Customers";
 import Cart from "../pages/Ecommerce/Cart";
+import CheckOut from '../pages/Ecommerce/CheckOut'
 import AddProduct from "../pages/Ecommerce/AddProduct";
 
 //Email
@@ -60,7 +61,6 @@ import FormElements from "../pages/Forms/FormElements";
 import FormAdvanced from "../pages/Forms/FormAdvanced";
 import FormEditors from "../pages/Forms/FormEditors";
 import FormValidations from "../pages/Forms/FormValidations";
-import FormMask from "../pages/Forms/FormMask";
 import FormUpload from "../pages/Forms/FormUpload";
 import FormWizard from "../pages/Forms/FormWizard";
 import FormXeditable from "../pages/Forms/FormXeditable";
@@ -137,7 +137,6 @@ const authProtectedRoutes = [
   { path: "/form-elements", component: FormElements },
   { path: "/form-advanced", component: FormAdvanced },
   { path: "/form-editors", component: FormEditors },
-  { path: "/form-mask", component: FormMask },
   { path: "/form-uploads", component: FormUpload },
   { path: "/form-wizard", component: FormWizard },
   { path: "/form-validation", component: FormValidations },
@@ -174,6 +173,7 @@ const authProtectedRoutes = [
   { path: "/ecommerce-product-detail", component: ProductDetail },
   { path: "/ecommerce-orders", component: Orders },
   { path: "/ecommerce-customers", component: Customers },
+  { path: "/ecommerce-checkout", component: CheckOut },
   { path: "/ecommerce-cart", component: Cart },
   { path: "/ecommerce-add-product", component: AddProduct },
 
