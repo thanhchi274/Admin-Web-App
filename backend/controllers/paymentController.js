@@ -1,65 +1,87 @@
 const asyncHandler = require("express-async-handler");
+const HistoryPayment = require("../models/historyPaymentModel");
 const crypto = require("crypto");
 const { v1: uuidv1 } = require("uuid");
 const https = require("https");
-const { default: axios } = require("axios");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+var _ = require('lodash');
+let MomoHandleItems = []
+let MoMoUserId = []
+let populateMoMoItems = data=>{
+  MomoHandleItems.push(data);
+}
+let populateMoMoUserID = data=>{
+  MoMoUserId.push(data);
+}
 const StripePayment = asyncHandler(async (req, res) => {
   const body = {
     payment_method: req.body.token,
     amount: req.body.amount,
     currency: "usd",
-    confirm:true,
-    payment_method_types:['card'],
-    metadata:{id:"PG4G68cfq3VNLlx7eDmXZ3vxDJs1"},
-    shipping:{
-      name:'Thanh Chi',
-      phone:'84901208206',
-      address:{
-        city:"Ho Chi Minh city",
-        state:"Viet Nam",
-        line1:'Viet Nam',
-        postal_code:'71114'
-      }
-    }
+    confirm: true,
+    payment_method_types: ["card"],
+    shipping: {
+      name: req.body.shippingData.first_name,
+      phone: req.body.shippingData.phone,
+      address: {
+        line1: req.body.shippingData.address,
+      },
+    },
   };
-  // const customer = await stripe.customers.create({
-  //   description: 'My First Test Customer (created for API docs)',
-  // },(stripeErr,stripeRes)=>{
-  //   if(stripeErr){
-  //     console.log(stripeErr)
-  //     res.status(500).send({
-  //             error: stripeErr,
-  //           });
-  //   }
-  //   else {
-  //         res.status(200).send({ success: stripeRes });
-  //       }
-  // });
   stripe.paymentIntents.create(body, (stripeErr, stripeRes) => {
     if (stripeErr) {
-      console.log(stripeErr)
       res.status(500).send({
         error: stripeErr,
       });
     } else {
-      res.status(200).send({ success: stripeRes });
+      let {id, amount,client_secret,created, currency, status}= stripeRes
+      const historyPayment = {
+        transactions_id: id,
+        createAt:created,
+        userID:req.body.userID,
+        status:"prepare",
+        product:req.body.items,
+        client_secret,
+        payment_status:status,
+        currency,
+        amount,
+      };
+      const createHistoryPayment = HistoryPayment.create(historyPayment);
+      createHistoryPayment
+        ?   res.status(200).send({ success: stripeRes })
+        : res.status(404).json({ error: "Please check again" });
     }
   });
 });
-const NotifyURLMOMO =asyncHandler(async (req, res) => {
-  console.log(req.body);
-  console.log(req.params)
-  console.log(req.query)
-})
+const NotifyURLMOMO = asyncHandler(async (req, res) => {
+  let productItems = _.flatten(_.map(MomoHandleItems));
+  let {signature, amount, message,responseTime,transId}= req.body
+  const historyPayment = {
+    transactions_id: transId,
+    createAt:responseTime,
+    userID:MoMoUserId[0],
+    status:"prepare",
+    product:productItems,
+    client_secret:signature,
+    payment_status:message,
+    currency:'VN',
+    amount,
+  };
+  const createHistoryPayment = HistoryPayment.create(historyPayment);
+  createHistoryPayment
+    ?   res.status(200).send({ success: historyPayment })
+    : res.status(404).json({ error: "Please check again" });
+});
 const MoMoPayment = asyncHandler(async (momoReq, momoRes) => {
   let requestId = uuidv1();
   let orderId = uuidv1();
-  let returnUrl = "https://clothing-backend-gakso.ondigitalocean.app/api/payment/notifyurl";
-  let notifyUrl = "https://callback.url/notify";
+  let returnUrl = `https://thanhchishop.com/payment-success/${orderId}`;
+  let notifyUrl = "https://thanhchishop.com/api/payment/notifyurl";
   let extraData = "merchantName=;merchantId=";
   let requestType = "captureMoMoWallet";
-  const { amount, orderInfo } = momoReq.body;
+  const { amount, orderInfo,items,userID } = momoReq.body;
+  populateMoMoItems(items)
+  populateMoMoUserID(userID)
   let rawSignature =
     "partnerCode=" +
     process.env.MOMO_PARTNER_CODE +
@@ -109,7 +131,6 @@ const MoMoPayment = asyncHandler(async (momoReq, momoRes) => {
   var savedResult = null;
   var req = https.request(options, (res) => {
     var jsonData = "";
-    console.log(`Status: ${res.statusCode}`);
     res.setEncoding("utf8");
     res.on(
       "data",
@@ -120,7 +141,6 @@ const MoMoPayment = asyncHandler(async (momoReq, momoRes) => {
     );
     res.on("end", () => {
       savedResult = JSON.parse(jsonData);
-      console.log("No more data in response.");
     });
   });
   req.on("error", (e) => {
@@ -133,6 +153,7 @@ const MoMoPayment = asyncHandler(async (momoReq, momoRes) => {
     if (!savedResult) {
       console.log("Last result is null!");
     } else {
+      // console.log(savedResult)
       momoRes.status(200).json(savedResult);
     }
   }

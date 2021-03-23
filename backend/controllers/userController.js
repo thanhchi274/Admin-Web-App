@@ -81,7 +81,6 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 });
 const updateUser = asyncHandler(async (req, res) => {
-  console.log(req.body)
     const id  =req.query.id
     const {email,phoneNumber,emailVerified,password,displayName,photoURL,disabled} = req.body
     FireStore.updateUser(id, {

@@ -1,4 +1,5 @@
 const ProductShop = require("../models/productModel.js");
+const Comment = require("../models/commentProductModel");
 const asyncHandler = require("express-async-handler");
 var _ = require('lodash');
 const getProducts = asyncHandler(async (req, res) => {
@@ -10,8 +11,15 @@ const getProducts = asyncHandler(async (req, res) => {
     ? res.status(200).json({..._(product).drop(drop).take(perPage).value(),"productLength":product.length})
     : res.status(404).json({ message: "Error when fetching data" });
 });
+const searchProducts = asyncHandler(async (req, res)=>{
+    const regex = new RegExp(`${req.query.searchText}`, 'gi');
+    const product = await ProductShop.find({name:regex});
+    product
+      ? res.status(200).json(product)
+      : res.status(404).json({ message: "Error when fetching data" });
+})
 const getProductById = asyncHandler(async (req, res) => {
-  const product = await ProductShop.findById(req.query.id);
+  const product = await ProductShop.findById(req.query.id).populate('comment');
   product
     ? res.status(200).json(product)
     : res.status(404).json({ error: "Not found the product" });
@@ -66,6 +74,16 @@ const deleteProducts = asyncHandler(async (req, res) => {
     ? res.status(200).json(products)
     : res.status(404).json({ error: "Not found the product" });
 });
+const postCommentProduct = asyncHandler(async (req, res) => {
+  const { productId } = req.query;
+  const newComment = new Comment(req.body);
+  const product = await ProductShop.findById(productId);
+  newComment.product = product;
+  await newComment.save();
+  product.comment.push(newComment._id);
+  await product.save();
+  res.status(201).json({newComment:newComment});
+})
 module.exports = {
   getProducts,
   getProductById,
@@ -77,4 +95,6 @@ module.exports = {
   updateProducts,
   deleteProduct,
   deleteProducts,
+  searchProducts,
+  postCommentProduct
 };

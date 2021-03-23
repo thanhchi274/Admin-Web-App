@@ -14,18 +14,21 @@ const historyPaymentModel = Schema(
     status:{
       type:String
     },
-    boughtProducts:[{
-      productId:{
-        type:Schema.Types.ObjectId,
-        ref:"productShop"
-      },
-      quantity:{
-        type:String
-      },
-      amount:{
-        type:String
-      }
-    }]
+    product:{
+      type:Array
+    },
+    client_secret:{
+      type:String
+    },
+    payment_status:{
+      type:String
+    },
+    currency:{
+      type:String
+    },
+    amount:{
+      type:String
+    }
 })
 const HistoryPayment = mongoose.model("HistoryPayment", historyPaymentModel,'history_payment');
 

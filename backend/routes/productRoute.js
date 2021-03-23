@@ -1,4 +1,6 @@
-const { getProducts, getProductById,getCategory,getSales,getRelatedItems,deleteProduct,deleteProducts,updateProduct,updateProducts,createProduct} =require( "../controllers/productController.js");
+const { getProducts, getProductById,getCategory,getSales,getRelatedItems,deleteProduct,deleteProducts,
+          searchProducts,updateProduct,updateProducts,createProduct,postCommentProduct} =require( "../controllers/productController.js");
+const {getComment, getCommentById } = require("../controllers/commentController")
 const express =require( 'express')
 const router = express.Router()
 //GET
@@ -7,10 +9,10 @@ router.get('/item',getProductById)
 router.get('/category',getCategory)
 router.get('/sales',getSales)
 router.get('/related_product',getRelatedItems)
-router.get('/search_suggest')
-router.get('/top_keywords')
-//POSt
+router.get("/search",searchProducts)
+//POST
 router.post('/create_product',createProduct)
+router.post('/post_comment',postCommentProduct)
 // //PUT
 router.put('/updateProduct',updateProduct)
 router.put('/updateProducts',updateProducts)

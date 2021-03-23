@@ -17,6 +17,10 @@ const productSchema = Schema(
       type:Schema.Types.ObjectId,
       ref:'collections'
     },
+    comment: [{
+      type:Schema.Types.ObjectId,
+      ref:'comment'
+    }],
     new:{
       type:Boolean
     },
@@ -25,9 +29,6 @@ const productSchema = Schema(
     },
     discount:{
       type:String,
-    },
-    pictures:{
-      type:Array
     },
     stock: {
       type: String,

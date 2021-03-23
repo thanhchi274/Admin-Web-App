@@ -27,7 +27,6 @@ var StripePayment = asyncHandler(function _callee(req, res) {
           };
           stripe.charges.create(body, function (stripeErr, stripeRes) {
             if (stripeErr) {
-              console.log(stripeErr);
               res.status(500).send({
                 error: stripeErr
               });

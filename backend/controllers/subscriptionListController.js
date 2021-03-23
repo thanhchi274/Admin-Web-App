@@ -9,7 +9,6 @@ const sendEmailCustomer = asyncHandler(async (req, res) => {
       pass: "Diyeucuachi2001",
     },
   });
-  console.log(req.query.email);
   var mailOptions = {
     from: "chiptgcs18059@fpt.edu.vn",
     to: req.query.email,
@@ -122,4 +121,5 @@ const sendMailAfterPayment = asyncHandler(async (req, res) => {
 })
 module.exports = {
   sendEmailCustomer,
+  sendMailAfterPayment
 };
