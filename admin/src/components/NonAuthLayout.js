@@ -7,7 +7,6 @@ class NonAuthLayout extends Component {
         this.state={};
         this.capitalizeFirstLetter.bind(this);
     }
-    
     capitalizeFirstLetter = string => {
         return string.charAt(1).toUpperCase() + string.slice(2);
       };

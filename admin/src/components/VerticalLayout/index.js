@@ -57,14 +57,12 @@ class Layout extends Component {
 }
 
   componentDidMount() {
-
-    
     // Scroll Top to 0
     window.scrollTo(0, 0);
     let currentage = this.capitalizeFirstLetter(this.props.location.pathname);
 
     document.title =
-      currentage + " | Thanh Chi Clothing - Responsive Bootstrap 4 Admin Dashboard";
+      currentage + " | Admin Dashboard - Thanh Chi Clothing";
     if (this.props.leftSideBarTheme) {
       this.props.changeSidebarTheme(this.props.leftSideBarTheme);
     }

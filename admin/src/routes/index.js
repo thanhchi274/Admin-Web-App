@@ -50,9 +50,6 @@ import FontAwesome from "../pages/Icons/FontAwesome";
 import StarterPage from "../pages/Utility/StarterPage";
 import Maintenance from "../pages/Utility/Maintenance";
 import CommingSoon from "../pages/Utility/CommingSoon";
-import Timeline from "../pages/Utility/Timeline";
-import FAQs from "../pages/Utility/FAQs";
-import Pricing from "../pages/Utility/Pricing";
 import Error404 from "../pages/Utility/Error404";
 import Error500 from "../pages/Utility/Error500";
 
@@ -144,9 +141,6 @@ const authProtectedRoutes = [
 
   //Utility
   { path: "/pages-starter", component: StarterPage },
-  { path: "/pages-timeline", component: Timeline },
-  { path: "/pages-faqs", component: FAQs },
-  { path: "/pages-pricing", component: Pricing },
 
   //Icons
   { path: "/icons-remix", component: RemixIcons },

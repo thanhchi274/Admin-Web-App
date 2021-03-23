@@ -4,20 +4,19 @@ import { Row, Col, Container } from "reactstrap";
 const Footer = () => {
   return (
     <React.Fragment>
-              <footer className="footer">
-                  <Container fluid>
-                        <Row>
-                            <Col sm={6}>
-                                {new Date().getFullYear()} © Thanh Chi Clothing.
-                            </Col>
-                            <Col sm={6}>
-                                <div className="text-sm-right d-none d-sm-block">
-                                    Crafted with <i className="mdi mdi-heart text-danger"></i> by Thanh Chi Clothing
-                                </div>
-                            </Col>
-                        </Row>
-                  </Container>
-              </footer>
+      <footer className="footer">
+        <Container fluid>
+          <Row>
+            <Col sm={6}>{new Date().getFullYear()} © Thanh Chi Clothing.</Col>
+            <Col sm={6}>
+              <div className="text-sm-right d-none d-sm-block">
+                Crafted with <i className="mdi mdi-heart text-danger"></i> by
+                Thanh Chi Clothing
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </footer>
     </React.Fragment>
   );
 };

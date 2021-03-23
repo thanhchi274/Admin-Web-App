@@ -4,13 +4,6 @@ import { Link } from "react-router-dom";
 
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
-
-//Import Images
-import img1 from "../../assets/images/product/img-1.png";
-import img2 from "../../assets/images/product/img-2.png";
-import img3 from "../../assets/images/product/img-3.png";
-import img4 from "../../assets/images/product/img-4.png";
-
 class Cart extends Component {
     constructor(props) {
         super(props);
@@ -21,10 +14,10 @@ class Cart extends Component {
             ],
             products : [
                 //Unique Id must be required
-                { id : 1, img : img1, name : "Full sleeve T-shirt", desc : "Blue", price : 240, data_attr : 2, total : 480 },
-                { id : 2, img : img2, name : "Half sleeve T-shirt", desc : "Red", price : 225, data_attr : 4, total : 225 },
-                { id : 3, img : img3, name : "Hoodie (Green)", desc : "Green", price : 275, data_attr : 1, total : 550 },
-                { id : 4, img : img4, name : "Hoodie (Grey)", desc : "Grey", price : 275, data_attr : 2, total : 275 },
+                { id : 1, img : null, name : "Full sleeve T-shirt", desc : "Blue", price : 240, data_attr : 2, total : 480 },
+                { id : 2, img : null, name : "Half sleeve T-shirt", desc : "Red", price : 225, data_attr : 4, total : 225 },
+                { id : 3, img : null, name : "Hoodie (Green)", desc : "Green", price : 275, data_attr : 1, total : 550 },
+                { id : 4, img : null, name : "Hoodie (Grey)", desc : "Grey", price : 275, data_attr : 2, total : 275 },
             ]
         }
         this.countUP.bind(this);

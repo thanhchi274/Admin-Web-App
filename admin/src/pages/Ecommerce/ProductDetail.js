@@ -6,12 +6,6 @@ import classnames from 'classnames';
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
 
-//Import Product Images
-import img1 from "../../assets/images/product/img-1.png";
-import img5 from "../../assets/images/product/img-5.png";
-import img3 from "../../assets/images/product/img-3.png";
-import img4 from "../../assets/images/product/img-4.png";
-
 class ProductDetail extends Component {
     constructor(props) {
         super(props);
@@ -46,7 +40,7 @@ class ProductDetail extends Component {
 
     imageShow(img, id) {
         var expandImg = document.getElementById("expandedImg" + id);
-        expandImg.src = img;
+        expandImg.src = "img";
     }
     
     render() {
@@ -71,25 +65,25 @@ class ProductDetail extends Component {
                                                                     className={classnames({ active: this.state.activeTab === '1' })}
                                                                     onClick={() => { this.toggleTab('1'); }}
                                                                 >
-                                                                    <img src={img1} alt="" onClick={() => { this.imageShow(img1, 1) }} className="img-fluid mx-auto d-block tab-img rounded"/>
+                                                                    <img src={"#"} alt="" onClick={() => { this.imageShow("#", 1) }} className="img-fluid mx-auto d-block tab-img rounded"/>
                                                                 </NavLink>
                                                                 <NavLink
                                                                     className={classnames({ active: this.state.activeTab === '2' })}
                                                                     onClick={() => { this.toggleTab('2'); }}
                                                                 >
-                                                                    <img src={img5} alt="" onClick={() => { this.imageShow(img5, 1) }} className="img-fluid mx-auto d-block tab-img rounded"/>
+                                                                    <img src={"#"} alt="" onClick={() => { this.imageShow("#", 1) }} className="img-fluid mx-auto d-block tab-img rounded"/>
                                                                 </NavLink>
                                                                 <NavLink
                                                                     className={classnames({ active: this.state.activeTab === '3' })}
                                                                     onClick={() => { this.toggleTab('3'); }}
                                                                 >
-                                                                    <img src={img3} onClick={() => { this.imageShow(img3, 1) }} alt="" className="img-fluid mx-auto d-block tab-img rounded"/>
+                                                                    <img src={"#"} onClick={() => { this.imageShow("#", 1) }} alt="" className="img-fluid mx-auto d-block tab-img rounded"/>
                                                                 </NavLink>
                                                                 <NavLink
                                                                     className={classnames({ active: this.state.activeTab === '4' })}
                                                                     onClick={() => { this.toggleTab('4'); }}
                                                                 >
-                                                                    <img src={img4} alt="" onClick={() => { this.imageShow(img4, 1) }} className="img-fluid mx-auto d-block tab-img rounded"/>
+                                                                    <img src={"#"} alt="" onClick={() => { this.imageShow("#", 1) }} className="img-fluid mx-auto d-block tab-img rounded"/>
                                                                 </NavLink>
                                                             </Nav>
                                                         </Col>
@@ -97,22 +91,22 @@ class ProductDetail extends Component {
                                                             <TabContent activeTab={this.state.activeTab} id="v-pills-tabContent">
                                                                 <TabPane tabId="1">
                                                                     <div className="product-img">
-                                                                        <img src={img1} id="expandedImg1" alt="" className="img-fluid mx-auto d-block"/>
+                                                                        <img src={"img1"} id="expandedImg1" alt="" className="img-fluid mx-auto d-block"/>
                                                                     </div>
                                                                 </TabPane>
                                                                 <TabPane tabId="2">
                                                                     <div className="product-img">
-                                                                        <img src={img5} id="expandedImg2" alt="" className="img-fluid mx-auto d-block"/>
+                                                                        <img src={"img5"} id="expandedImg2" alt="" className="img-fluid mx-auto d-block"/>
                                                                     </div>
                                                                 </TabPane>
                                                                 <TabPane tabId="3">
                                                                     <div className="product-img">
-                                                                        <img src={img3} id="expandedImg3" alt="" className="img-fluid mx-auto d-block"/>
+                                                                        <img src={"img5"} id="expandedImg3" alt="" className="img-fluid mx-auto d-block"/>
                                                                     </div>
                                                                 </TabPane>
                                                                 <TabPane tabId="4">
                                                                     <div className="product-img">
-                                                                        <img src={img4} id="expandedImg4" alt="" className="img-fluid mx-auto d-block"/>
+                                                                        <img src={"img5"} id="expandedImg4" alt="" className="img-fluid mx-auto d-block"/>
                                                                     </div>
                                                                 </TabPane>
                                                             </TabContent>
@@ -193,19 +187,19 @@ class ProductDetail extends Component {
                                                                 <h5 className="font-size-14">Color :</h5>
                                                                 <Link to="#" className="active">
                                                                     <div className="product-color-item">
-                                                                        <img src={img1} alt="" className="avatar-md"/>
+                                                                        <img src={"img5"} alt="" className="avatar-md"/>
                                                                     </div>
                                                                     <p>Blue</p>
                                                                 </Link>
                                                                 <Link to="#" className="ml-1">
                                                                     <div className="product-color-item">
-                                                                        <img src={img5} alt="" className="avatar-md"/>
+                                                                        <img src={"img5"} alt="" className="avatar-md"/>
                                                                     </div>
                                                                     <p>Cyan</p>
                                                                 </Link>
                                                                 <Link to="#" className="ml-1">
                                                                     <div className="product-color-item">
-                                                                        <img src={img3} alt="" className="avatar-md"/>
+                                                                        <img src={"img5"} alt="" className="avatar-md"/>
                                                                     </div>
                                                                     <p>Green</p>
                                                                 </Link>
