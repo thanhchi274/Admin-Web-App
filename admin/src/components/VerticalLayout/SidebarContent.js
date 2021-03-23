@@ -125,12 +125,9 @@ class SidebarContent extends Component {
                                     <li><Link to="ecommerce-orders">{this.props.t('Orders')}</Link></li>
                                     <li><Link to="ecommerce-customers">{this.props.t('Customers')}</Link></li>
                                     <li><Link to="ecommerce-cart">{this.props.t('Cart')}</Link></li>
-                                    <li><Link to="ecommerce-checkout">{this.props.t('Checkout')}</Link></li>
-                                    <li><Link to="ecommerce-shops">{this.props.t('Shops')}</Link></li>
                                     <li><Link to="ecommerce-add-product">{this.props.t('Add Product')}</Link></li>
                                 </ul>
                             </li>
-                
                             <li>
                                 <Link to="/#" className="has-arrow waves-effect">
                                     <i className="ri-mail-send-line"></i>
@@ -264,7 +261,6 @@ class SidebarContent extends Component {
                                 <ul className="sub-menu" aria-expanded="false">
                                     <li><Link to="icons-remix">{this.props.t('Remix Icons')}</Link></li>
                                     <li><Link to="icons-materialdesign">{this.props.t('Material Design')}</Link></li>
-                                    <li><Link to="icons-dripicons">{this.props.t('Dripicons')}</Link></li>
                                     <li><Link to="icons-fontawesome">{this.props.t('Font awesome 5')}</Link></li>
                                 </ul>
                             </li>

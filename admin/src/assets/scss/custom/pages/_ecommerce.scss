@@ -208,12 +208,3 @@
     }
 
 }
-
-// ecommerce checkout
-
-.shipping-address{
-    box-shadow: none;
-    &.active{
-        border-color: $primary !important;
-    }
-}

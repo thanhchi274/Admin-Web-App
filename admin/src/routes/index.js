@@ -23,8 +23,6 @@ import ProductDetail from "../pages/Ecommerce/ProductDetail";
 import Orders from "../pages/Ecommerce/Orders";
 import Customers from "../pages/Ecommerce/Customers";
 import Cart from "../pages/Ecommerce/Cart";
-import CheckOut from "../pages/Ecommerce/CheckOut";
-import Shops from "../pages/Ecommerce/Shops";
 import AddProduct from "../pages/Ecommerce/AddProduct";
 
 //Email
@@ -44,7 +42,7 @@ import MapsVector from "../pages/Maps/MapsVector";
 //Icons
 import RemixIcons from "../pages/Icons/RemixIcons";
 import MaterialDesign from "../pages/Icons/MaterialDesign";
-import DripiIcons from "../pages/Icons/DripiIcons";
+
 import FontAwesome from "../pages/Icons/FontAwesome";
 
 //Utility
@@ -154,7 +152,7 @@ const authProtectedRoutes = [
   //Icons
   { path: "/icons-remix", component: RemixIcons },
   { path: "/icons-materialdesign", component: MaterialDesign },
-  { path: "/icons-dripicons", component: DripiIcons },
+
   { path: "/icons-fontawesome", component: FontAwesome },
 
   // Maps
@@ -177,8 +175,6 @@ const authProtectedRoutes = [
   { path: "/ecommerce-orders", component: Orders },
   { path: "/ecommerce-customers", component: Customers },
   { path: "/ecommerce-cart", component: Cart },
-  { path: "/ecommerce-checkout", component: CheckOut },
-  { path: "/ecommerce-shops", component: Shops },
   { path: "/ecommerce-add-product", component: AddProduct },
 
   //chat

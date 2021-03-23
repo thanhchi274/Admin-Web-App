@@ -74,44 +74,9 @@ class MapsVector extends Component {
                             <Col lg={6}>
                                 <Card>
                                     <CardBody>
-                                        <h4 className="card-title">Europe Vector Map</h4>
-                                        <p className="card-title-dsec">Example of india vector maps.</p>
+                                        <h4 className="card-title">Asia Vector Map</h4>
+                                        <p className="card-title-dsec">Example of Asia vector maps.</p>
                                         <div id="india-vectormap" style={{height:"350px"}}>
-                                        <Vector
-                                          value="europe_mill"
-                                          width="500"
-                                          color="rgb(98, 110, 212)"
-                                        />
-                                        </div>
-                                    </CardBody> 
-                                </Card> 
-                            </Col> 
-                        </Row>
-                        
-
-                        <Row>
-                            <Col lg={6}>
-                                <Card>
-                                    <CardBody>
-                                        <h4 className="card-title">Australia Vector Map</h4>
-                                        <p className="card-title-dsec">Example of australia vector maps.</p>
-                                        <div id="australia-vectormap" style={{height:"350px"}}>
-                                        <Vector
-                                          value="au_mill"
-                                          width="500"
-                                          color="rgb(98, 110, 212)"
-                                        />
-                                        </div>
-                                    </CardBody> 
-                                </Card> 
-                            </Col> 
-
-                            <Col lg={6}>
-                                <Card>
-                                    <CardBody>
-                                        <h4 className="card-title">Chicago Vector Map</h4>
-                                        <p className="card-title-dsec">Example chicago of vector maps.</p>
-                                        <div id="chicago-vectormap" style={{height:"350px"}}>
                                         <Vector
                                           value="asia_mill"
                                           width="500"
@@ -122,42 +87,6 @@ class MapsVector extends Component {
                                 </Card> 
                             </Col> 
                         </Row>
-                        
-
-                        <Row>
-                            <Col lg={6}>
-                                <Card>
-                                    <CardBody>
-                                        <h4 className="card-title">Indonesia Vector Map</h4>
-                                        <p className="card-title-dsec">Example of united kingdom vector maps.</p>
-                                        <div id="uk-vectormap" style={{height:"350px"}}>
-                                        <Vector
-                                          value="indonesia"
-                                          width="500"
-                                          color="rgb(98, 110, 212)"
-                                        />
-                                        </div>
-                                    </CardBody> 
-                                </Card> 
-                            </Col> 
-                            
-                            <Col lg={6}>
-                                <Card>
-                                    <CardBody>
-                                        <h4 className="card-title">Canada Vector Map</h4>
-                                        <p className="card-title-dsec">Example canada of vector maps.</p>
-                                        <div id="canada-vectormap" style={{height:"350px"}}>
-                                        <Vector
-                                          value="ca_lcc"
-                                          width="500"
-                                          color="rgb(98, 110, 212)"
-                                        />
-                                        </div>
-                                    </CardBody> 
-                                </Card> 
-                            </Col> 
-                        </Row>
-
                     </Container> 
                 </div>
       </React.Fragment>

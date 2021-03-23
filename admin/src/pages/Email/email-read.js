@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 //Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
-
 //Import Components
 import EmailSidebar from "./email-sidebar";
 import EmailToolBar from "./email-toolbar";

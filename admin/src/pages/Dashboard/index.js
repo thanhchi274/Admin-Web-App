@@ -9,7 +9,6 @@ import MiniWidgets from "./MiniWidgets";
 import RevenueAnalytics from "./RevenueAnalytics";
 import SalesAnalytics from "./SalesAnalytics";
 import EarningReports from "./EarningReports";
-import Sources from "./Sources";
 import RecentlyActivity from "./RecentlyActivity";
 import RevenueByLocations from "./RevenueByLocations";
 import ChatBox from "./ChatBox";
@@ -61,15 +60,13 @@ class Dashboard extends Component {
                         
 
                         <Row>
-                            {/* sources */}
-                            <Sources/>
-
                             {/* recent activity */}
                             <RecentlyActivity/>
 
                             {/* revenue by locations */}
                             <RevenueByLocations/>
 
+                            <RevenueByLocations/>
                         </Row>
                         
 

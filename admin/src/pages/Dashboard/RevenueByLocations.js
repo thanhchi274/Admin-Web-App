@@ -39,7 +39,7 @@ class RevenueByLocations extends Component {
 
                                         <div id="usa-vectormap" style={{height: "196px"}}>
                                         <Vector
-                                          value="us_aea"
+                                          value="vietnam"
                                           width="200"
                                           color="#e8ecf4"
                                         />
