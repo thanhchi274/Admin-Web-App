@@ -1,6 +1,7 @@
 import { takeLatest, call, put, all,select } from "redux-saga/effects";
 import ShopActionTypes from "./product.types";
 import axios from "axios";
+import _ from "lodash"
 import { fetchDataError, fetchDataSuccess,fetchSingleProductSuccess,fetchSingleProductError,fetchRelateProductSuccess,fetchSearchSuccess,fetchSearchFailure,resetSingleProduct } from "./product.actions";
 import {selectPaginationValue,selectProductRelatedTag} from './product.selectors'
 let lst1 = []
@@ -22,13 +23,9 @@ export function* fetchSearchAsync(props){
 }
 export function* fetchDataAsync() {
   try {
-    // let paginationValue =yield select(selectPaginationValue)
-    yield axios.get(`https://thanhchishop.com/api/products/?page=1`,{headers: {
-      'Content-Type': 'application/json;charset=UTF-8',
-      "Access-Control-Allow-Origin": "*",
-    }}).then(res=> console.log(res.data))
-    // yield console.log(populateData2)
-    // yield put(fetchDataSuccess(lst1));
+    let paginationValue =yield select(selectPaginationValue)
+    yield axios.get(`${process.env.REACT_APP_BASE_URL}/products/?page=${paginationValue}`).then(res=> populateData2(res.data));
+    yield put(fetchDataSuccess(lst1));
     lst1=[]
   } catch (err) {
     yield console.log(err.response)

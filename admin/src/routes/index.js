@@ -183,10 +183,10 @@ const authProtectedRoutes = [
 ];
 
 const publicRoutes = [
-  { path: "/logout", component: Logout },
-  { path: "/login", component: Login },
-  { path: "/forgot-password", component: ForgetPwd },
-  { path: "/register", component: Register },
+  // { path: "/logout", component: Logout },
+  // { path: "/login", component: Login },
+  // { path: "/forgot-password", component: ForgetPwd },
+  // { path: "/register", component: Register },
   { path: "/auth-lock-screen", component: AuthLockScreen },
 
   // Authentication Inner

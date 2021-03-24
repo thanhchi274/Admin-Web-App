@@ -24,6 +24,7 @@ import {fetchDataStart} from '../../store/product/product.actions'
 // RangeSlider
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
+import axios from "axios";
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
@@ -36,7 +37,6 @@ const Products =({fetchDataStart})=>{
   const [Discount, setDiscount] = useState(true)
   const [Size, setSize] = useState(true)
   useEffect(() => {
-    console.log(process.env.REACT_APP_BASE_URL)
     fetchDataStart()
   }, [fetchDataStart])
     return (

@@ -1,27 +1,26 @@
 import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-
 let users = [
   { id: 1, username: 'admin', password: '123456', email: 'admin@admin.in' }
 ];
 
 const fakeBackend = () => {
   // This sets the mock adapter on the default instance
-  var mock = new MockAdapter(axios);
-
-  mock.onPost('/post-register').reply(function (config) {
-
-    const user = JSON.parse(config['data']);
-    users.push(user);
-
-    return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        resolve([200, user]);
+  axios({
+    method: 'post',
+    url: '/post-register',
+  })
+    .then(function (config) {
+      const user = JSON.parse(config['data']);
+      users.push(user);
+  
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve([200, user]);
+        });
       });
     });
-  });
 
-  mock.onPost('/post-login').reply(function (config) {
+  axios.post('/post-login').then(function (config) {
     const user = JSON.parse(config['data']);
     const validUser = users.filter(usr => usr.email === user.username && usr.password === user.password);
     
@@ -36,7 +35,7 @@ const fakeBackend = () => {
     });
   });
 
-  mock.onPost('/forget-pwd').reply(function (config) {
+  axios.post('/forget-pwd').then(function (config) {
    // User needs to check that user is eXist or not and send mail for Reset New password
 
    return new Promise(function (resolve, reject) {

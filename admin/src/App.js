@@ -14,13 +14,13 @@ import NonAuthLayout from "./components/NonAuthLayout";
 import "./theme.scss";
 
 //Fake backend
-import fakeBackend from './helpers/AuthType/fakeBackend';
+// import fakeBackend from './helpers/AuthType/fakeBackend';
 
 //Firebase helper
 import { initFirebaseBackend } from "./helpers/firebase_helper";
 
 // Activating fake backend
-fakeBackend();
+// fakeBackend();
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_APIKEY,
@@ -32,11 +32,8 @@ const firebaseConfig = {
 	appId: process.env.REACT_APP_APPID,
 	measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
-  
 // init firebase backend
-initFirebaseBackend(firebaseConfig);
-
-class App extends Component {
+initFirebaseBackend(firebaseConfig);class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {  };
