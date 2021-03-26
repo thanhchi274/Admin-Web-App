@@ -108,8 +108,6 @@ const authProtectedRoutes = [
   { path: "/tables-editable", component: EditableTables },
 
   // Ui
-  { path: "/ui-alerts", component: UiAlert },
-  { path: "/ui-buttons", component: UiButtons },
   { path: "/ui-cards", component: UiCards },
   { path: "/ui-carousel", component: UiCarousel },
   { path: "/ui-dropdowns", component: UiDropdown },
@@ -125,10 +123,7 @@ const authProtectedRoutes = [
   { path: "/ui-video", component: UiVideo },
   { path: "/ui-session-timeout", component: UiSessionTimeout },
   { path: "/ui-rating", component: UiRating },
-  { path: "/ui-rangeslider", component: UiRangeSlider },
   { path: "/ui-notifications", component: UiNotifications },
-  { path: "/ui-roundslider", component: UIRoundSlider },
-
   // Forms
   { path: "/form-elements", component: FormElements },
   { path: "/form-advanced", component: FormAdvanced },
