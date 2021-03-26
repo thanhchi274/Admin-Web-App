@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Countdown from "react-countdown";
 
 //Import Logo
-import logodark from '../../assets/images/logo-dark.png';
+import logodark from '../../assets/SVG/crown.svg';
 
 class CommingSoon extends Component {
     constructor() {
@@ -51,7 +51,7 @@ class CommingSoon extends Component {
                                         <div>
                                             <div className="text-center">
                                                 <div>
-                                                    <Link to="/" className="logo"><img src={logodark} height="20" alt="logo"/></Link>
+                                                    <Link to="/" className="logo"><img src={logodark} height="36" alt="logo"/></Link>
                                                 </div>
     
                                                 <h4 className="font-size-18 mt-4">Let's get started with Thanh Chi Clothing</h4>

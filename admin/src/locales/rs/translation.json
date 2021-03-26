@@ -32,7 +32,6 @@
     "Login": "Авторизоваться",
     "Register": "регистр",
     "Recover Password": "Восстановить пароль",
-    "Lock Screen" : "Экран блокировки",
     "Utility": "Утилита",
     "Starter Page": "Стартовая страница",
     "Maintenance": "техническое обслуживание",
@@ -83,7 +82,7 @@
     "Sparkline" : "Спарклайн",
     "Icons": "Иконки",
     "Remix Icons": "Ремикс Иконки",
-    "Material Design": "Материал Дизайн",
+
     "Font awesome 5": "Шрифт потрясающий 5",
     "Maps": "Карты",
     "Google Maps": "Карты Гугл",

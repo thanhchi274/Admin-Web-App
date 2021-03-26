@@ -28,8 +28,7 @@ export function* fetchDataAsync() {
     yield put(fetchDataSuccess(lst1));
     lst1=[]
   } catch (err) {
-    yield console.log(err.response)
-    // yield put(fetchDataError(err.message));
+    yield put(fetchDataError(err.message));
   }
 }
 export function* fetchSingleProductAsync({productId}) {

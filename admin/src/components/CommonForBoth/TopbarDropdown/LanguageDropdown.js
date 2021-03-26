@@ -46,12 +46,9 @@ class LanguageDropdown extends Component {
       this.setState({lng : "German", flag : germany });
   else if(lng === "rs")
        this.setState({lng : "Russian", flag : russia });
-  else if(lng === "it")
-       this.setState({lng : "Italian", flag : italy });
   else if(lng === "eng")
        this.setState({lng : "English", flag : usFlag });
  }
-
   render() {
 
     return (
@@ -75,11 +72,6 @@ class LanguageDropdown extends Component {
                                 <DropdownItem href="" active={this.state.lng === "German" ? true : false } onClick={() => this.changeLanguageAction('gr')} className=" notify-item">
                                     <img src={germany} alt="user" className="mr-1" height="12"/> <span className="align-middle">German</span>
                                 </DropdownItem>
-                                
-                                <DropdownItem href="" active={this.state.lng === "Italian" ? true : false } onClick={() => this.changeLanguageAction('it')} className=" notify-item">
-                                    <img src={italy} alt="user" className="mr-1" height="12"/> <span className="align-middle">Italian</span>
-                                </DropdownItem>
-                                
                                 <DropdownItem href="" active={this.state.lng === "Russian" ? true : false } onClick={() => this.changeLanguageAction('rs')} className=" notify-item">
                                     <img src={russia} alt="user" className="mr-1" height="12"/> <span className="align-middle">Russian</span>
                                 </DropdownItem>

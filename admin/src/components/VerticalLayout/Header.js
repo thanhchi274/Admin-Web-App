@@ -29,19 +29,8 @@ import { withTranslation } from "react-i18next";
 import { toggleRightSidebar } from "../../store/actions";
 
 //Import logo Images
-import logosmdark from "../../assets/images/logo-sm-dark.png";
-import logodark from "../../assets/images/logo-dark.png";
-import logosmlight from "../../assets/images/logo-sm-light.png";
-import logolight from "../../assets/images/logo-light.png";
-
-//Import Social Profile Images
-import github from "../../assets/images/brands/github.png";
-import bitbucket from "../../assets/images/brands/bitbucket.png";
-import dribbble from "../../assets/images/brands/dribbble.png";
-import dropbox from "../../assets/images/brands/dropbox.png";
-import mail_chimp from "../../assets/images/brands/mail_chimp.png";
-import slack from "../../assets/images/brands/slack.png";
-
+import logosmlight from "../../assets/SVG/crown.svg";
+import logolight from "../../assets/SVG/crown.svg";
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -93,21 +82,12 @@ class Header extends Component {
                     <div className="d-flex">
 
                         <div className="navbar-brand-box">
-                            <Link to="#" className="logo logo-dark">
-                                <span className="logo-sm">
-                                    <img src={logosmdark} alt="" height="22"/>
-                                </span>
-                                <span className="logo-lg">
-                                    <img src={logodark} alt="" height="20"/>
-                                </span>
-                            </Link>
-
                             <Link to="#" className="logo logo-light">
                                 <span className="logo-sm">
-                                    <img src={logosmlight} alt="" height="22"/>
+                                    <img src={logosmlight} alt="" height="36"/>
                                 </span>
                                 <span className="logo-lg">
-                                    <img src={logolight} alt="" height="20"/>
+                                    <img src={logolight} alt="" height="36"/>
                                 </span>
                             </Link>
                         </div>

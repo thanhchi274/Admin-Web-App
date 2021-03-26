@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Card, CardBody, Button,Container } from "reactstrap";
-import logodark from "../../assets/images/logo-dark.png";
+import logodark from "../../assets/SVG/crown.svg";
 
 //SweetAlert
 import SweetAlert from "react-bootstrap-sweetalert";

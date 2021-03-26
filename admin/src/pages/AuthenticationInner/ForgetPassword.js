@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
 // import images
-import logodark from "../../assets/images/logo-dark.png";
+import logodark from "../../assets/SVG/crown.svg";
 
 class ForgetPasswordPage extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class ForgetPasswordPage extends Component {
                                         <div>
                                             <div className="text-center">
                                                 <div>
-                                                    <Link to="/" className="logo"><img src={logodark} height="20" alt="logo"/></Link>
+                                                    <Link to="/" className="logo"><img src={logodark} height="36" alt="logo"/></Link>
                                                 </div>
     
                                                 <h4 className="font-size-18 mt-4">Reset Password</h4>

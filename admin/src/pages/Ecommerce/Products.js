@@ -21,6 +21,7 @@ import ProductListing from './Products/common/product-listing-new'
 import FilterBar from "./Products/common/filter-bar";
 import { createStructuredSelector } from "reselect";
 import {fetchDataStart} from '../../store/product/product.actions'
+import {selectDataIsMapping} from '../../store/product/product.selectors'
 // RangeSlider
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
@@ -29,17 +30,19 @@ import axios from "axios";
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import { connect } from "react-redux";
-const Products =({fetchDataStart})=>{
+const Products =({fetchDataStart,productsData})=>{
   const [BreadCrumbItems, setBreadCrumbItems] = useState([
     { title: "Ecommerce", link: "#" },
     { title: "Products", link: "#" },
   ])
   const [Discount, setDiscount] = useState(true)
   const [Size, setSize] = useState(true)
+
   useEffect(() => {
     fetchDataStart()
   }, [fetchDataStart])
-    return (
+
+    return productsData?(
       <React.Fragment>
         <div className="page-content">
           <Container fluid>
@@ -283,7 +286,6 @@ const Products =({fetchDataStart})=>{
                       <Row>
                         <Col md={6}>
                           <div>
-                            <h5>Clothes & Accessories</h5>
                             <Breadcrumb listClassName="p-0 bg-transparent mb-2">
                               <BreadcrumbItem>
                                 <Link to="#">Fashion</Link>
@@ -291,7 +293,6 @@ const Products =({fetchDataStart})=>{
                               <BreadcrumbItem>
                                 <Link to="#">Clothing</Link>
                               </BreadcrumbItem>
-                              <BreadcrumbItem active>T-shirts</BreadcrumbItem>
                             </Breadcrumb>
                           </div>
                         </Col>
@@ -329,7 +330,7 @@ const Products =({fetchDataStart})=>{
                         </li>
                       </ul>
 
-                      <ProductListing/>
+                      <ProductListing data ={productsData}/>
                       <Row className="mt-4">
                         <Col sm={6}>
                           <div>
@@ -379,10 +380,10 @@ const Products =({fetchDataStart})=>{
           </Container>
         </div>
       </React.Fragment>
-    );
+    ):<>Is Loaading</>;
   }
 const mapStateToProps = createStructuredSelector({
-  
+  productsData :selectDataIsMapping
 })
 
 const mapDispatchToProps = dispatch=>({

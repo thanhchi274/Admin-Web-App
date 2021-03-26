@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // import images
-import logodark from "../../assets/images/logo-dark.png";
+import logodark from "../../assets/SVG/crown.svg";
 
 class Register extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ handleSubmit(event, values) {
                                         <div>
                                             <div className="text-center">
                                                 <div>
-                                                    <Link to="#" className="logo"><img src={logodark} height="20" alt="logo"/></Link>
+                                                    <Link to="#" className="logo"><img src={logodark} height="36" alt="logo"/></Link>
                                                 </div>
     
                                                 <h4 className="font-size-18 mt-4">Register account</h4>

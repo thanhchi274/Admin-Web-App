@@ -176,13 +176,6 @@
 @include media-breakpoint-down(md) {
 
     .navbar-brand-box{
-        .logo-dark {
-            display: $display-block;
-            span.logo-sm{
-                display: $display-block;
-            }
-        }
-    
         .logo-light {
             display: $display-none;
         }
@@ -238,10 +231,6 @@
 
     body[data-layout="horizontal"][data-topbar="light"] {
         .navbar-brand-box{
-            .logo-dark {
-                display: $display-block;
-            }
-        
             .logo-light {
                 display: $display-none;
             }

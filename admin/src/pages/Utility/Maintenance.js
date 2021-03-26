@@ -3,7 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 //Import Logo
-import logodark from '../../assets/images/logo-dark.png';
+import logodark from '../../assets/SVG/crown.svg';
 import bg from "../../assets/images/maintenance-bg.png";
 
 class Maintenance extends Component {
@@ -30,7 +30,7 @@ class Maintenance extends Component {
                         <div className="text-center">
                             <div className="mb-5">
                                 <Link to="/">
-                                    <img src={logodark} alt="logo" height="20" />
+                                    <img src={logodark} alt="logo" height="36" />
                                 </Link>
                             </div>
 

@@ -53,7 +53,7 @@ class Login extends Component {
                                         <div>
                                             <div className="text-center">
                                                 <div>
-                                                    <Link to="/" className="logo"><img src={Logo} height="20" alt="logo"/></Link>
+                                                    <Link to="/" className="logo"><img src={Logo} height="36" alt="logo"/></Link>
                                                 </div>
                                                 <h4 className="font-size-18 mt-4">Welcome Back !</h4>
                                                 <p className="text-muted">Sign in to continue to Thanh Chi Clothing.</p>

@@ -6,7 +6,7 @@ const getProducts = asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page)||2;
   const perPage = 29;
   let drop =(page -1)*perPage
-  const product = await ProductShop.find({});
+  const product = await ProductShop.find();
   product
     ? res.status(200).json({..._(product).drop(drop).take(perPage).value(),"productLength":product.length})
     : res.status(404).json({ message: "Error when fetching data" });

@@ -63,7 +63,6 @@ const ProductPage = ({ }) => {
                           <div className="product-top-filter">
                             <div className="container-fluid p-0">
                               <div className="d-flex justify-content-end">
-                            
                               <div className="filter-main-btn">
                                 <BrowserView>
                                     <span
