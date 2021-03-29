@@ -1,16 +1,16 @@
 import i18n from "i18next";
 import detector from "i18next-browser-languagedetector";
 import { withTranslation, initReactI18next } from "react-i18next";
-import translationGr from './locales/gr/translation.json';
-import translationSP from './locales/sp/translation.json';
+import translationVN from './locales/vn/translation.json';
+import translationNippon from './locales/nippon/translation.json';
 import translationENG from './locales/en/translation.json';
 //translations
 const resources = {
-  gr: {
-    translation: translationGr
+  vn: {
+    translation: translationVN
   },
-   sp: {
-    translation: translationSP
+   nippon: {
+    translation: translationNippon
   },
    eng: {
     translation: translationENG

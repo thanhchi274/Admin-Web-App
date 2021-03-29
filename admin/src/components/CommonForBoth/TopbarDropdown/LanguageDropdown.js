@@ -63,11 +63,11 @@ class LanguageDropdown extends Component {
                                     <img src={usFlag} alt="user" className="mr-1" height="12"/> <span className="align-middle">English</span>
                                 </DropdownItem>
 
-                                <DropdownItem href="" active={this.state.lng === "Spanish" ? true : false } onClick={() => this.changeLanguageAction('sp')} className="notify-item">
+                                <DropdownItem href="" active={this.state.lng === "日本語" ? true : false } onClick={() => this.changeLanguageAction('nippon')} className="notify-item">
                                     <img src={spain} alt="user" className="mr-1" height="12"/> <span className="align-middle">日本語</span>
                                 </DropdownItem>
 
-                                <DropdownItem href="" active={this.state.lng === "German" ? true : false } onClick={() => this.changeLanguageAction('gr')} className=" notify-item">
+                                <DropdownItem href="" active={this.state.lng === "VietNam" ? true : false } onClick={() => this.changeLanguageAction('vn')} className=" notify-item">
                                     <img src={germany} alt="user" className="mr-1" height="12"/> <span className="align-middle">VietNam</span>
                                 </DropdownItem>
                             </DropdownMenu>
