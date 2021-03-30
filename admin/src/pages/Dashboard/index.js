@@ -7,7 +7,6 @@ import MiniWidgets from "./MiniWidgets";
 import RevenueAnalytics from "./RevenueAnalytics";
 import SalesAnalytics from "./SalesAnalytics";
 import EarningReports from "./EarningReports";
-import RecentlyActivity from "./RecentlyActivity";
 import RevenueByLocations from "./RevenueByLocations";
 import LatestTransactions from "./LatestTransactions";
 import { connect } from "react-redux";
@@ -102,14 +101,9 @@ const Dashboard = ({ fetchDataStart, analysisData, totalProduct,averageValue,Mon
           </Row>
           <Row>
             {/* recent activity */}
-            <RecentlyActivity />
+            {/* <RecentlyActivity /> */}
             {/* revenue by locations */}
             <RevenueByLocations />
-            <RevenueByLocations />
-          </Row>
-          <Row>
-
-            {/* latest transactions */}
             <LatestTransactions />
           </Row>
         </Container>
