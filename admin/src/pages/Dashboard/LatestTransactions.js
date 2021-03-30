@@ -134,15 +134,7 @@ class LatestTransactions extends Component {
                 billingName: "Walter Brown",
                 total: "$172",
                 status : <div className="badge badge-soft-warning font-size-12">unpaid</div>,
-              },
-              {
-                            id : 11,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1562</Link>,
-                date: "04 Apr, 2020",
-                billingName: "Walter Brown",
-                total: "$172",
-                status : <div className="badge badge-soft-success font-size-12">Paid</div>,
-              },
+              }
             ]
       };
 

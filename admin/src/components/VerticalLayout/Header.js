@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 
 // Import menuDropdown
 import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
-import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 
 //Import i18n
@@ -132,7 +131,6 @@ class Header extends Component {
                             </Button>
                         </div>
 
-                        <NotificationDropdown/>
 
                         <ProfileMenu/>
                     </div>

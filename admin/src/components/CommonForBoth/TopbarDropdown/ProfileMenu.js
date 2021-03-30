@@ -43,8 +43,6 @@ class ProfileMenu extends Component {
                                 <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem className="d-block" href="#"><i className="ri-settings-2-line align-middle mr-1"></i> {this.props.t('Settings')}</DropdownItem>
-                                <DropdownItem divider />
                                 <DropdownItem className="text-danger" href="/logout"><i className="ri-shut-down-line align-middle mr-1 text-danger"></i> {this.props.t('Logout')}</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>

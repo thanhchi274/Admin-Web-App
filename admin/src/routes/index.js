@@ -14,7 +14,6 @@ import Dashboard from "../pages/Dashboard/index";
 import Calendar from "../pages/Calendar/Calendar";
 
 // Pages Component
-import Chat from "../pages/Chat/Chat";
 
 //Ecommerce Pages
 import Products from "../pages/Ecommerce/Products";
@@ -22,21 +21,14 @@ import ProductDetail from "../pages/Ecommerce/ProductDetail";
 import Orders from "../pages/Ecommerce/Orders";
 import Customers from "../pages/Ecommerce/Customers";
 import Cart from "../pages/Ecommerce/Cart";
-import CheckOut from '../pages/Ecommerce/CheckOut'
+import CheckOut from "../pages/Ecommerce/CheckOut";
 import AddProduct from "../pages/Ecommerce/AddProduct";
-
-//Email
-import EmailInbox from "../pages/Email/email-inbox";
-import EmailRead from "../pages/Email/email-read";
-
 // Charts
 import ChartApex from "../pages/Charts/Apexcharts";
 import ChartjsChart from "../pages/Charts/ChartjsChart";
 import SparklineChart from "../pages/Charts/SparklineChart";
 import ChartsKnob from "../pages/Charts/charts-knob";
 
-// Maps
-import MapsGoogle from "../pages/Maps/MapsGoogle";
 import MapsVector from "../pages/Maps/MapsVector";
 
 //Icons
@@ -143,7 +135,6 @@ const authProtectedRoutes = [
   { path: "/icons-fontawesome", component: FontAwesome },
 
   // Maps
-  { path: "/maps-google", component: MapsGoogle },
   { path: "/maps-vector", component: MapsVector },
 
   //Charts
@@ -151,10 +142,6 @@ const authProtectedRoutes = [
   { path: "/charts-chartjs", component: ChartjsChart },
   { path: "/charts-sparkline", component: SparklineChart },
   { path: "/charts-knob", component: ChartsKnob },
-
-  //Email
-  { path: "/email-inbox", component: EmailInbox },
-  { path: "/email-read", component: EmailRead },
 
   //Ecommerce
   { path: "/ecommerce-products", component: Products },
@@ -164,8 +151,6 @@ const authProtectedRoutes = [
   { path: "/ecommerce-checkout", component: CheckOut },
   { path: "/ecommerce-cart", component: Cart },
   { path: "/ecommerce-add-product", component: AddProduct },
-  //chat
-  { path: "/apps-chat", component: Chat },
   //calendar
   { path: "/calendar", component: Calendar },
   { path: "/dashboard", component: Dashboard },

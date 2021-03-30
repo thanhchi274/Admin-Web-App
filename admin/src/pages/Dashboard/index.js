@@ -9,7 +9,6 @@ import SalesAnalytics from "./SalesAnalytics";
 import EarningReports from "./EarningReports";
 import RecentlyActivity from "./RecentlyActivity";
 import RevenueByLocations from "./RevenueByLocations";
-import ChatBox from "./ChatBox";
 import LatestTransactions from "./LatestTransactions";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -98,6 +97,7 @@ const Dashboard = ({ fetchDataStart, analysisData, totalProduct,averageValue,Mon
               <SalesAnalytics />
               {/* earning reports */}
               <EarningReports />
+              <EarningReports />
             </Col>
           </Row>
           <Row>
@@ -108,8 +108,7 @@ const Dashboard = ({ fetchDataStart, analysisData, totalProduct,averageValue,Mon
             <RevenueByLocations />
           </Row>
           <Row>
-            {/* chat box */}
-            <ChatBox />
+
             {/* latest transactions */}
             <LatestTransactions />
           </Row>

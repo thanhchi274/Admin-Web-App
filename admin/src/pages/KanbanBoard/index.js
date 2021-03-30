@@ -164,54 +164,10 @@ class IndexKanban extends Component {
                                     </Media>
                                 </Media>
                             </Col>
-                            <Col lg={6}>
-                                <div className="text-lg-right">
-                                    <ul className="list-inline mb-0">
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="d-inline-block" id="member1">
-                                                <img src={avatar2} className="rounded-circle avatar-xs" alt="Thanh Chi Clothing"/>
-                                            </Link>
-                                            <UncontrolledTooltip target="member1" placement="top">
-                                                Aaron Williams
-                                            </UncontrolledTooltip>
-                                        </li>
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="d-inline-block" id="member2">
-                                                <div className="avatar-xs">
-                                                    <span className="avatar-title rounded-circle bg-soft-primary text-primary">
-                                                        J
-                                                    </span>
-                                                </div>
-                                            </Link>
-                                            <UncontrolledTooltip target="member2" placement="top">
-                                            Jonathan McKinney
-                                            </UncontrolledTooltip>
-                                        </li>
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="d-inline-block" id="member3">
-                                                <img src={avatar4} className="rounded-circle avatar-xs" alt="Thanh Chi Clothing"/>
-                                            </Link>
-                                            <UncontrolledTooltip target="member3" placement="top">
-                                            Carole Connolly
-                                            </UncontrolledTooltip>
-                                        </li>
-                                        
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="py-1">
-                                                <i className="mdi mdi-plus mr-1"></i> New member
-                                            </Link>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </Col>
                         </Row>
-                        
-
                         <Row>
                         <KanbanBoard board={this.state} content={this.state.columns}/>
                         </Row>
-                        
 
                     </Container>
                 </div>

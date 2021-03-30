@@ -102,12 +102,6 @@ class SidebarContent extends Component {
               </Link>
             </li>
 
-            <li>
-              <Link to="apps-chat" className=" waves-effect">
-                <i className="ri-chat-1-line"></i>
-                <span className="ml-1">{this.props.t("Chat")}</span>
-              </Link>
-            </li>
 
             <li>
               <Link to="/#" className="has-arrow waves-effect">
@@ -118,11 +112,6 @@ class SidebarContent extends Component {
                 <li>
                   <Link to="ecommerce-products">
                     {this.props.t("Products")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="ecommerce-product-detail">
-                    {this.props.t("Product Detail")}
                   </Link>
                 </li>
                 <li>
@@ -148,21 +137,6 @@ class SidebarContent extends Component {
                 </li>
               </ul>
             </li>
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="ri-mail-send-line"></i>
-                <span className="ml-1">{this.props.t("Email")}</span>
-              </Link>
-              <ul className="sub-menu" aria-expanded="false">
-                <li>
-                  <Link to="email-inbox">{this.props.t("Inbox")}</Link>
-                </li>
-                <li>
-                  <Link to="email-read">{this.props.t("Read Email")}</Link>
-                </li>
-              </ul>
-            </li>
-
             <li>
               <Link to="apps-kanban-board" className=" waves-effect">
                 <i className="ri-artboard-2-line"></i>
