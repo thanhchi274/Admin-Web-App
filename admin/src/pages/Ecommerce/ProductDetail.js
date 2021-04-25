@@ -41,7 +41,7 @@ const ProductDetail = ({
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   const [vertical, setVertical] = useState(true);
-  let history = useHistory()
+  let history = useHistory();
   let productsnav = {
     vertical: vertical,
     verticalSwiping: vertical,
@@ -79,9 +79,9 @@ const ProductDetail = ({
       setActiveTab2(tab);
     }
   };
-  const handleEdit = ()=>{
-    history.push(`/product-edit/${otherProps.match.params.id}`)
-  }
+  const handleEdit = () => {
+    history.push(`/product-edit/${otherProps.match.params.id}`);
+  };
   return singleProduct && isFetching === false ? (
     <React.Fragment>
       <div className="page-content">

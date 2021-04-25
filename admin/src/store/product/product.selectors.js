@@ -7,7 +7,7 @@ export const selectFilter = state => state.filter
 export const test = state=>state.product.paginationItem
 export const selectSearchData = createSelector([selectShop], product=>product.searchData)
 export const selectPaginationValue = createSelector([selectShop], product=>product.paginationItem )
-export const selectSingleProduct = createSelector([selectShop],product=>product.singleProduct)
+export const selectSingleProduct = createSelector([selectShop],product=>product.singleProduct?product.singleProduct[0]:null)
 export const selectProductComment =createSelector([selectSingleProduct], product=>product[0].comment)
 export const selectRelatedProduct= createSelector([selectShop],product=>product.relatedProduct)
 export const selectProductRelatedTag = createSelector([selectSingleProduct],product=> product?_.head(product[0].tags):null)

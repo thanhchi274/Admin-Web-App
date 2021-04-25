@@ -1,0 +1,7 @@
+export const LACK_START_END_TIME = "You must set start and end time"
+export const END_OVER_START = "End time must not over start time"
+export const OLD_DATE = "Date is old"
+export const SUCCESS_LOGIN ="Login successful"
+export const FAILURE_LOGIN ="Login failed"
+export const UPDATE_SUCCESS = "Update successful"
+export const UPDATE_FAILURE = "Update failed"

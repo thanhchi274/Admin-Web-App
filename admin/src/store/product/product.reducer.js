@@ -15,6 +15,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     case ShopActionTypes.FETCH_RELATE_PRODUCT:
     case ShopActionTypes.FETCH_SINGLE_PRODUCT:
     case ShopActionTypes.FETCH_DATA_START:
+    case ShopActionTypes.EDIT_PRODUCT_START:
     return {
       ...state,
       isFetching: true
@@ -47,10 +48,15 @@ const shopReducer = (state = INITIAL_STATE, action) => {
           ...state,
           searchData:action.payload
         }
+    case ShopActionTypes.EDIT_PRODUCT_SUCCESS:
+      return {
+        ...state,
+      }
     case ShopActionTypes.FETCH_RELATE_PRODUCT_FAILURE:
     case ShopActionTypes.FETCH_SINGLE_PRODUCT_FAILURE:
     case ShopActionTypes.FETCH_DATA_FAILURE:
     case ShopActionTypes.FETCH_SEARCH_FAILURE:
+    case ShopActionTypes.EDIT_PRODUCT_ERROR:
       return{
         ...state,
         isFetching: false,

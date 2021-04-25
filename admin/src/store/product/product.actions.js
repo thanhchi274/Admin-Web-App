@@ -53,3 +53,14 @@ export const fetchRelateProductError = error => ({
   type: ShopActionTypes.FETCH_RELATE_PRODUCT_FAILURE,
   payload: error,
 });
+export const editProductStart = data=>({
+  type: ShopActionTypes.EDIT_PRODUCT_START,
+  payload: data
+})
+export const editProductSuccess=data=>({
+  type: ShopActionTypes.EDIT_PRODUCT_SUCCESS,
+})
+export const editProductError = error=>({
+  type: ShopActionTypes.EDIT_PRODUCT_ERROR,
+  payload: error
+})

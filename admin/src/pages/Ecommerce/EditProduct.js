@@ -14,14 +14,14 @@ import {
   FormGroup,
   Label,
   Input,
+  Button
 } from "reactstrap";
-import {useDropzone} from 'react-dropzone';
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import Dropzone from "react-dropzone";
 import Select from "react-select";
-import { fetchSingleProductStart } from "../../store/product/product.actions";
+import { fetchSingleProductStart,editProductStart } from "../../store/product/product.actions";
 import {
   selectSingleProduct,
   selectIsDataFetching,
@@ -45,21 +45,13 @@ const AddProduct = ({
   fetchSingleProductStart,
   isFetching,
   singleProduct,
+  editProductStart,
   ...otherProps
 }) => {
   const [breadcrumbItems, setBreadcrumbItems] = useState([
     { title: "Ecommerce", link: "#" },
     { title: "Edit Product", link: "#" },
   ]);
-//   const {
-//     acceptedFiles,
-//     fileRejections,
-//     getRootProps,
-//     getInputProps
-//   } = useDropzone({    
-//     maxFiles:3,
-//     accept: 'image/jpeg, image/png'
-//   });
   const [activeTab, setActiveTab] = useState(1);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [product, setProduct] = useState(null);
@@ -100,28 +92,39 @@ const AddProduct = ({
     { value: "L", label: "Size L" },
   ];
   const colors=["red", 'green', 'orange', 'black','white','yellow','blue','gray']
-  let colorCheck = product? colors.filter(x => product[0].colors.includes(x)):null
+  let colorCheck = product? colors.filter(x => product.colors.includes(x)):null
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([0]);
+  const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
-    console.log(currentIndex)
     const newChecked = [...checked];
-
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
     setChecked(newChecked);
   };
-
+  const handleSubmit = async event => {
+    event.preventDefault();
+    editProductStart({ product, files:selectedFiles })
+  };
+  const handleChange = event => {
+    const { value, name } = event.target;
+    console.log(product)
+    setProduct({
+      ...product,
+      [name]: value,
+    });
+  };
+  const handleChangeTags = event=>{
+    const { value, name } = event.target;
+    setProduct({...product, [name]:[value]})
+  }
   return singleProduct && product !==null && isFetching === false ? (
     <React.Fragment>
       <div className="page-content">
-        {console.log(product)}
         <Container fluid>
           <Breadcrumbs title="Edit Product" breadcrumbItems={breadcrumbItems} />
           <Row>
@@ -173,7 +176,9 @@ const AddProduct = ({
                               id="productname"
                               name="productname"
                               type="text"
-                              value={product[0].name}
+                              name='name'
+                              value={product.name}
+                              onChange={handleChange}
                               className="form-control"
                             />
                           </FormGroup>
@@ -183,11 +188,13 @@ const AddProduct = ({
                                 <Label className="control-label">
                                   Manufacturer Brand
                                 </Label>
-                                <select className="form-control select2">
-                                  <option>{product[0].tags}</option>
-                                  <option value="EL">Electronic</option>
-                                  <option value="FA">Fashion</option>
-                                  <option value="FI">Fitness</option>
+                                <select className="form-control select2" name="tags" onChange={handleChangeTags}>
+                                  <option>{product.tags}</option>
+                                  <option value="EL">Louis Vuiton</option>
+                                  <option value="FA">Gucci</option>
+                                  <option value="FI">Hermes</option>
+                                  <option value="FA">Nike</option>
+                                  <option value="FI">Adidas</option>
                                 </select>
                               </FormGroup>
                             </Col>
@@ -197,8 +204,10 @@ const AddProduct = ({
                                 <Input
                                   id="manufacturerbrand"
                                   name="manufacturerbrand"
-                                  type="text"
-                                  value={product[0].price}
+                                  type="number"
+                                  name='price'
+                                  value={product.price}
+                                  onChange={handleChange}
                                   disabled={true}
                                   className="form-control"
                                 />
@@ -210,8 +219,12 @@ const AddProduct = ({
                                 <Input
                                   id="price"
                                   name="price"
-                                  type="text"
-                                  value={product[0].discount}
+                                  type="number"
+                                  name='discount'
+                                  max="100"
+                                  min="0"
+                                  onChange={handleChange}
+                                  value={product.discount}
                                   className="form-control"
                                 />
                               </FormGroup>
@@ -222,7 +235,6 @@ const AddProduct = ({
                               <FormGroup>
                                 <Label className="control-label">Color</Label>
                                 <List className={classes.root}>
-                                {console.log(colors.filter(x => product[0].colors.includes(x)))}
                                   {colors.map((value) => {
                                     const labelId = `checkbox-list-label-${value}`;
                                     return (
@@ -281,7 +293,9 @@ const AddProduct = ({
                               className="form-control"
                               id="productdesc"
                               rows="5"
-                              defaultValue={product[0].shortDetails}
+                              name='shortDetails'
+                              onChange={handleChange}
+                              defaultValue={product.shortDetails}
                             ></textarea>
                           </FormGroup>
                           <FormGroup>
@@ -292,14 +306,15 @@ const AddProduct = ({
                               className="form-control"
                               id="productdesc"
                               rows="5"
-                              defaultValue={product[0].description}
+                              name='description'
+                              onChange={handleChange}
+                              defaultValue={product.description}
                             ></textarea>
                           </FormGroup>
                         </Form>
                       </TabPane>
                       <TabPane tabId={2}>
-                        <h4 className="card-title">Product Images</h4>
-                        <p className="card-title-desc">Upload product image</p>
+                        <h4 className="card-title">Upload product image</h4>
                         <Form>
                           <Dropzone maxFiles={3}  accept= 'image/jpeg, image/png'
                             onDrop={(acceptedFiles) =>
@@ -380,14 +395,15 @@ const AddProduct = ({
                       <li
                         className={activeTab === 2 ? "next disabled" : "next"}
                       >
-                        <Link
-                          to="#"
-                          onClick={() => {
-                            toggleTab(activeTab + 1);
-                          }}
+                        <Button
+                          color="success" 
+                          type="submit"
+                          onClick={(event) =>activeTab!==2 ?
+                            toggleTab(activeTab + 1)
+                          :handleSubmit(event)}
                         >
-                          Next
-                        </Link>
+                        {activeTab === 2 ? "Finish" : "Next"}
+                        </Button>
                       </li>
                     </ul>
                   </div>
@@ -414,5 +430,6 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchSingleProductStart: (data) => dispatch(fetchSingleProductStart(data)),
+  editProductStart: (data) => dispatch(editProductStart(data))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
