@@ -80,97 +80,46 @@ class LatestTransactions extends Component {
                 status : <div className="badge badge-soft-success font-size-12">Paid</div>,
               },
               {
-                            id : 4,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1569</Link>,
-                date: "02 Apr, 2020",
-                billingName: "Paul Jones",
-                total: "$183",
-                status : <div className="badge badge-soft-success font-size-12">Paid</div>,
-              },
-              {
-                            id : 5,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1568</Link>,
-                date: "04 Apr, 2020",
-                billingName: "Walter Brown",
-                total: "$172",
-                status : <div className="badge badge-soft-danger font-size-12">Chargeback</div>,
-              },
-              {
-                            id : 6,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1567</Link>,
-                date: "04 Apr, 2020",
-                billingName: "Walter Brown",
-                total: "$172",
-                status : <div className="badge badge-soft-warning font-size-12">unpaid</div>,
-              },
-              {
-                            id : 7,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1566</Link>,
-                date: "04 Apr, 2020",
-                billingName: "Walter Brown",
-                total: "$172",
-                status : <div className="badge badge-soft-success font-size-12">Paid</div>,
-              },
-              {
-                            id : 8,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1565</Link>,
-                date: "04 Apr, 2020",
-                billingName: "Walter Brown",
-                total: "$172",
-                status : <div className="badge badge-soft-success font-size-12">Paid</div>,
-              },
-              {
-                            id : 9,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1564</Link>,
-                date: "04 Apr, 2020",
-                billingName: "Walter Brown",
-                total: "$172",
-                status : <div className="badge badge-soft-success font-size-12">Paid</div>,
-              },
-              {
-                            id : 10,
-                orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1563</Link>,
-                date: "04 Apr, 2020",
-                billingName: "Walter Brown",
-                total: "$172",
-                status : <div className="badge badge-soft-warning font-size-12">unpaid</div>,
-              }
+                id : 2,
+      orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1571</Link> ,
+      date: "03 Apr, 2020",
+      billingName: "Jimmy Barker",
+      total: "$165",
+      status : <div className="badge badge-soft-warning font-size-12">unpaid</div>,
+    },
+    {
+                  id : 3,
+      orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1570</Link>,
+      date: "03 Apr, 2020",
+      billingName: "Donald Bailey",
+      total: "$146",
+      status : <div className="badge badge-soft-success font-size-12">Paid</div>,
+    },
+    {
+      id : 3,
+orderId: <Link to="#" className="text-dark font-weight-bold">#NZ1570</Link>,
+date: "03 Apr, 2020",
+billingName: "Donald Bailey",
+total: "$146",
+status : <div className="badge badge-soft-success font-size-12">Paid</div>,
+},
             ]
       };
-
-      const options = {
-        // pageStartIndex: 0,
-        hideSizePerPage: false,
-        hidePageListOnlyOnePage: false,
-        sizePerPageList :
-          [ {
-            text: '5th', value: 5
-          }, {
-            text: '10th', value: 10
-          }, {
-            text: 'All', value: data.rows.length
-          } ]
-        
-      };
-
       const selectRow = {
         mode: 'checkbox',
         clickToSelect: true
       };
-      
         return (
             <React.Fragment>
                             <Col lg={8}>
                                 <Card>
                                     <CardBody>
                                         <h4 className="card-title mb-4">Latest Transactions</h4>
-
                                         <BootstrapTable
                                           keyField='id'
                                           data={ data.rows }
                                           columns={ data.columns }
                                           expandRow={ expandRow }
-                                          pagination={ paginationFactory(options) }
                                           selectRow={ selectRow }
                                         />
                                     </CardBody>

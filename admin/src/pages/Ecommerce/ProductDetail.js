@@ -82,7 +82,7 @@ const ProductDetail = ({
   const handleEdit = () => {
     history.push(`/product-edit/${otherProps.match.params.id}`);
   };
-  return singleProduct && isFetching === false ? (
+  return ( singleProduct && (isFetching === false)) ? (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
@@ -100,7 +100,7 @@ const ProductDetail = ({
                         <Row>
                           <Col xs={3}>
                             <SmallImages
-                              item={singleProduct[0]}
+                              item={singleProduct}
                               settings={productsnav}
                               navOne={nav1}
                             />
@@ -112,7 +112,7 @@ const ProductDetail = ({
                               ref={(slider) => setNav1(slider)}
                               className="product-right-slick"
                             >
-                              {singleProduct[0].variants.map((vari, index) => (
+                              {singleProduct.variants.map((vari, index) => (
                                 <InnerImageZoom
                                   className="img-fluid"
                                   moveType={"pan"}
@@ -152,12 +152,12 @@ const ProductDetail = ({
                     </Col>
                     <Col xl={7}>
                       <div className="mt-4 mt-xl-3">
-                        <h5 className="mt-1 mb-3">{singleProduct[0].name}</h5>
+                        <h5 className="mt-1 mb-3">{singleProduct.name}</h5>
 
                         <div className="d-inline-flex">
                           <div className="text-muted mr-3">
                             <div className="rating">
-                              {_.range(0, singleProduct[0].rating).map(
+                              {_.range(0, singleProduct.rating).map(
                                 (value, key, range) => {
                                   return (
                                     <span
@@ -172,29 +172,29 @@ const ProductDetail = ({
                         </div>
 
                         <h5 className="mt-2">
-                          {singleProduct[0].discount !== "0" ? (
+                          {singleProduct.discount !== "0" ? (
                             <del className="text-muted mr-2">
-                              {singleProduct[0].price}
+                              {singleProduct.price}
                             </del>
                           ) : null}
-                          {singleProduct[0].discount !== "0"
-                            ? singleProduct[0].price -
-                              (singleProduct[0].discount *
-                                singleProduct[0].price) /
+                          {singleProduct.discount !== "0"
+                            ? singleProduct.price -
+                              (singleProduct.discount *
+                                singleProduct.price) /
                                 100
                             : null}
-                          {singleProduct[0].discount === "0" ? null : (
+                          {singleProduct.discount === "0" ? null : (
                             <span className="text-danger font-size-12 ml-2">
-                              {singleProduct[0].discount} % Off
+                              {singleProduct.discount} % Off
                             </span>
                           )}
                         </h5>
-                        <p className="mt-3">{singleProduct[0].shortDetails}</p>
+                        <p className="mt-3">{singleProduct.shortDetails}</p>
                         <Row>
                           <Col md={6}>
                             <div className="product-color mt-3">
                               <h5 className="font-size-14">Color :</h5>
-                              {singleProduct[0].colors.map((item, index) => (
+                              {singleProduct.colors.map((item, index) => (
                                 <Link to="#" className="active ml-1">
                                   <div
                                     className="product-color-item"
@@ -212,7 +212,7 @@ const ProductDetail = ({
                             </div>
                             <div className="product-color mt-3">
                               <h5 className="font-size-14">Size :</h5>
-                              {singleProduct[0].size.map((item, index) => (
+                              {singleProduct.size.map((item, index) => (
                                 <Link to="#" className="active ml-1">
                                   <div
                                     className="product-color-item"
@@ -269,7 +269,7 @@ const ProductDetail = ({
                       >
                         <TabPane tabId="1" role="tabpanel">
                           <div>
-                            <p>{singleProduct[0].description}</p>
+                            <p>{singleProduct.description}</p>
                           </div>
                         </TabPane>
                         <TabPane tabId="2" id="specifi" role="tabpanel">
@@ -278,12 +278,12 @@ const ProductDetail = ({
                               <tbody>
                                 <tr>
                                   <th scope="row">Brand</th>
-                                  <td>{singleProduct[0].tags}</td>
+                                  <td>{singleProduct.tags}</td>
                                 </tr>
                                 <tr>
                                   <th scope="row">Size</th>
                                   <td>
-                                    {singleProduct[0].size.map(
+                                    {singleProduct.size.map(
                                       (item, index) => (
                                         <span>{item + "  "}</span>
                                       )

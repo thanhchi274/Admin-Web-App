@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Card, CardBody, Row, Col, Table,UncontrolledTooltip, Alert, Input, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, FormGroup } from "reactstrap";
 import { Link } from "react-router-dom";
-
 import { AvForm, AvField } from "availity-reactstrap-validation";
-
-//Import Breadcrumb
 import Breadcrumbs from '../../components/Common/Breadcrumb';
-
 class Customers extends Component {
     constructor(props) {
         super(props);
@@ -22,86 +18,8 @@ class Customers extends Component {
                     customer : "Carolyn Harvey",
                     email : "CarolynHarvey@rhyta.com",
                     phone : "580-464-4694",
-                    balance : "$ 3245",
                     date : "06 Apr, 2020",
                 },
-                {
-                    customer : "Angelyn Hardin",
-                    email : "AngelynHardin@dayrep.com",
-                    phone : "913-248-2690",
-                    balance : "$ 2435",
-                    date : "05 Apr, 2020",
-                },
-                {
-                    customer : "Carrie Thompson	",
-                    email : "CarrieThompson@rhyta.com",
-                    phone : "734-819-9286",
-                    balance : "$ 2653",
-                    date : "04 Apr, 2020",
-                },
-                {
-                    customer : "Kathleen Haller",
-                    email : "KathleenHaller@dayrep.com",
-                    phone : "313-742-3333",
-                    balance : "$ 2135",
-                    date : "03 Apr, 2020",
-                },
-                {
-                    customer : "Martha Beasley",
-                    email : "MarthaBeasley@teleworm.us",
-                    phone : "301-330-5745",
-                    balance : "$ 2698",
-                    date : "02 Apr, 2020",
-                },
-                {
-                    customer : "Kathryn Hudson",
-                    email : "KathrynHudson@armyspy.com",
-                    phone : "414-453-5725",
-                    balance : "$ 2758",
-                    date : "02 Apr, 2020",
-                },
-                {
-                    customer : "Robert Bott",
-                    email : "RobertBott@armyspy.com",
-                    phone : "712-237-9899",
-                    balance : "$ 2836",
-                    date : "01 Apr, 2020",
-                },
-                {
-                    customer : "Mary McDonald",
-                    email : "MaryMcDonald@armyspy.com",
-                    phone : "317-510-25554",
-                    balance : "$ 3245",
-                    date : "31 Mar, 2020",
-                },
-                {
-                    customer : "Keith Rainey",
-                    email : "KeithRainey@jourrapide.com	",
-                    phone : "214-712-1810",
-                    balance : "$ 3125",
-                    date : "30 Mar, 2020",
-                },
-                {
-                    customer : "Anthony Russo",
-                    email : "AnthonyRusso@jourrapide.com",
-                    phone : "412-371-8864",
-                    balance : "$ 2456",
-                    date : "30 Mar, 2020",
-                },
-                {
-                    customer : "Donna Betz",
-                    email : "DonnaBetz@jourrapide.com",
-                    phone : "626-583-5779",
-                    balance : "$ 3423",
-                    date : "29 Mar, 2020",
-                },
-                {
-                    customer : "Angie Andres",
-                    email : "AngieAndres@armyspy.com",
-                    phone : "213-494-4527",
-                    balance : "$ 3245",
-                    date : "28 Apr, 2020"
-                }
             ]
         }
         this.addCustomer.bind(this);
@@ -112,7 +30,6 @@ class Customers extends Component {
         var name = values.custname;
         var cEmail = values.custemail;
         var phonenumber = values.phonenumber;
-        var newBalance ="$ "+ values.wBalance;
         var d = new Date();
         var day = d.getDate();
         var mon = d.getMonth();
@@ -120,21 +37,13 @@ class Customers extends Component {
         var date = day + "/" + mon + "/" + y;
         let demoData = this.state.data;
 
-        //push data to the varible
-        demoData.push({ customer :name, email : cEmail, phone : phonenumber, balance : newBalance, date : date })
-        
-        //update data state
+        demoData.push({ customer :name, email : cEmail, phone : phonenumber, date : date })
         this.setState({data : demoData});
-
-        //show alert for success message
         this.setState({isAlertOpen : true});
-
-        //update state for closing
         setTimeout(() => { 
             this.setState({modal_static : false});
         }, 2000);
     }
-    
     render() {
         return (
             <React.Fragment>
@@ -148,7 +57,7 @@ class Customers extends Component {
                                 <Card>
                                     <CardBody>
                                         <div>
-                                            <Link to="#" onClick={() => this.setState({ modal_static: true, isAlertOpen : false })} className="btn btn-success mb-2"><i  className="mdi mdi-plus mr-2"></i> Add Customer</Link>
+                                            <Link to="#" onClick={() => this.setState({ modal_static: true, isAlertOpen : false })} className="btn btn-success mb-2"><i  className="mdi mdi-plus mr-2"></i> New Mail</Link>
                                         </div>
                                         <div  className="table-responsive mt-3">
                                             <Table className="table-centered datatable dt-responsive nowrap " style={{borderCollapse:"collapse", borderSpacing : 0, width:"100%"}}>
@@ -163,8 +72,7 @@ class Customers extends Component {
                                                         <th>Customer</th>
                                                         <th>Email</th>
                                                         <th>Phone</th>
-                                                        <th>Money Paid</th>
-                                                        <th>Joining Date</th>
+                                                        <th>Created Date</th>
                                                         <th style={{width:"120px"}}>Action</th>
                                                     </tr>
                                                 </thead>
@@ -178,14 +86,9 @@ class Customers extends Component {
                                                                         <Label  className="custom-control-label" htmlFor={"customercheck" + key}>&nbsp;</Label>
                                                                     </div>
                                                                 </td>
-                                                                
                                                                 <td>{customerData.customer}</td>
                                                                 <td>{customerData.email}</td>
                                                                 <td>{customerData.phone}</td>
-                                                                
-                                                                <td>
-                                                                   {customerData.balance}
-                                                                </td>
                                                                 <td>
                                                                    {customerData.date}
                                                                 </td>
@@ -193,10 +96,6 @@ class Customers extends Component {
                                                                 <Link to="#"  className="mr-3 text-primary" id={"edit"+key}><i  className="mdi mdi-pencil font-size-18"></i></Link>
                                                                     <UncontrolledTooltip target={"edit"+key} placement="top">
                                                                         Edit
-                                                                    </UncontrolledTooltip>
-                                                                    <Link to="#"  className="text-danger" id={"delete"+key}><i className="mdi mdi-trash-can font-size-18"></i></Link>
-                                                                    <UncontrolledTooltip target={"delete"+key} placement="top">
-                                                                        Delete
                                                                     </UncontrolledTooltip>
                                                                 </td>
                                                             </tr>
@@ -218,7 +117,7 @@ class Customers extends Component {
                           size = "lg"
                         >
                             <ModalHeader toggle={() => this.setState({ modal_static: false })}>
-                            Add Customer Details
+                            Customer Details
                             </ModalHeader>
                             <ModalBody>
                             <AvForm onValidSubmit={this.addCustomer}>
@@ -272,25 +171,36 @@ class Customers extends Component {
 
                                         <Col lg={4}>
                                         <FormGroup>
-                                            <Label htmlFor="email">Money Paid</Label>
+                                            <Label htmlFor="email">Message</Label>
                                             <AvField
-                                            name="wBalance"
-                                            type="number"
+                                            name="title"
+                                            type="text"
                                             className="form-control"
-                                            id="wBalance"
-                                            placeholder="Money Paid"
+                                            id="title"
+                                            placeholder="title"
                                             required
                                             />
+                                        </FormGroup>
+                                        </Col>
+                                        <Col lg={12}>
+                                        <FormGroup>
+                                            <Label htmlFor="productdesc">
+                                            Product Short Details
+                                            </Label>
+                                            <textarea
+                                            className="form-control"
+                                            id="productdesc"
+                                            rows="5"
+                                            name='message'
+                                            ></textarea>
                                         </FormGroup>
                                         </Col>
                                     </Row>
                                     <ModalFooter>
                                         <Button type="button" color="light" onClick={() => this.setState({ modal_static: false }) }>Calcel</Button>
                                         <Button type="submit" color="primary">Add</Button>
-                                    </ModalFooter> 
-                            
+                                    </ModalFooter>
                             </AvForm>
-                            
                             </ModalBody>
                             </Modal>
 
