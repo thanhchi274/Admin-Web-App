@@ -31,29 +31,6 @@ class Layout extends Component {
   capitalizeFirstLetter = string => {
     return string.charAt(1).toUpperCase() + string.slice(2);
   };
-
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      // if(this.props.isLoading === true)
-      //   {
-      //     document.getElementById('preloader').style.display = "block";
-      //     document.getElementById('status').style.display = "block";
-
-      //     setTimeout(function(){
-
-      //     document.getElementById('preloader').style.display = "none";
-      //     document.getElementById('status').style.display = "none";
-
-      //     }, 2500);
-      //   }
-      //   else
-      //   {
-      //     document.getElementById('preloader').style.display = "none";
-      //     document.getElementById('status').style.display = "none";
-      //   }
-    }
-}
-
   componentDidMount() {
     window.scrollTo(0, 0);
     let currentage = this.capitalizeFirstLetter(this.props.location.pathname);
@@ -90,15 +67,6 @@ class Layout extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <div id="preloader">
-            <div id="status">
-                <div className="spinner">
-                    <i className="ri-loader-line spin-icon"></i>
-                </div>
-            </div>
-        </div> */}
-
-
         <div id="layout-wrapper">
         <Header toggleMenuCallback={this.toggleMenuCallback} toggleRightSidebar={this.toggleRightSidebar} />
           <Sidebar

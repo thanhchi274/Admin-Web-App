@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // MetisMenu
 import MetisMenu from "metismenujs";
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 
 //i18n
 import { withTranslation } from "react-i18next";
@@ -106,25 +106,25 @@ class SidebarContent extends Component {
                   </Link>
                 </li>
                 <li>
-                  <Link to="orders">{this.props.t("Orders")}</Link>
+                  <Link to="/orders">{this.props.t("Orders")}</Link>
                 </li>
                 <li>
-                  <Link to="customers">
-                    {this.props.t("Customers")}
+                  <Link to="/feedback">
+                    {this.props.t("Feeback")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="add-product">
+                  <Link to="/add-product">
                     {this.props.t("Add Product")}
                   </Link>
                 </li>
               </ul>
             </li>
             <li>
-              <Link to="apps-kanban-board" className=" waves-effect">
+              <NavLink to="/form-advanced" className=" waves-effect">
                 <i className="ri-artboard-2-line"></i>
-                <span className="ml-1">{this.props.t("Kanban Board")}</span>
-              </Link>
+                <span className="ml-1">{this.props.t("Email Marketing")}</span>
+              </NavLink>
             </li>
           </ul>
         </div>

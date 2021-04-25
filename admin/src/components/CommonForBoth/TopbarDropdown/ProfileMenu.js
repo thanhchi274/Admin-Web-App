@@ -7,8 +7,6 @@ import {
 } from "reactstrap";
 //i18n
 import { withTranslation } from "react-i18next";
-// users
-import avatar2 from "../../../assets/images/users/avatar-2.jpg";
 class ProfileMenu extends Component {
   constructor(props) {
     super(props);
@@ -44,11 +42,6 @@ class ProfileMenu extends Component {
             className="btn header-item waves-effect"
             id="page-header-user-dropdown"
           >
-            <img
-              className="rounded-circle header-profile-user mr-1"
-              src={avatar2}
-              alt="Header Avatar"
-            />
             <span className="d-none d-xl-inline-block ml-1 text-transform">
               {username}
             </span>

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-// import { createStructuredSelector } from "reselect";
-// import { selectFilter } from "../../../Store/shop/shop.selectors";
-// import { filterSort } from "../../../Store/filter/filter.action";
+import { createStructuredSelector } from "reselect";
+import { selectFilter } from "../../../../store/product/product.selectors";
+import { filterSort } from "../../../../store/filter/filter.action";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-// import FilterListIcon from '@material-ui/icons/FilterList';
+import FilterListIcon from '@material-ui/icons/FilterList';
 const FilterBar = ({ filterSort, onLayoutViewClicked }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -50,7 +50,7 @@ const FilterBar = ({ filterSort, onLayoutViewClicked }) => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        {/* <FilterListIcon fontSize="large" /> */}
+        <FilterListIcon color="primary" fontSize="large" />
       </Button>
       <Menu
         id="simple-menu"
@@ -74,11 +74,11 @@ const FilterBar = ({ filterSort, onLayoutViewClicked }) => {
   );
 };
 
-// const mapStateToProps = createStructuredSelector({
-//   filters: selectFilter,
-// });
-// const mapDispatchToProps = (dispatch) => ({
-//   filterSort: (data) => dispatch(filterSort(data)),
-// });
+const mapStateToProps = createStructuredSelector({
+  filters: selectFilter,
+});
+const mapDispatchToProps = (dispatch) => ({
+  filterSort: (data) => dispatch(filterSort(data)),
+});
 
-export default connect(null, null)(FilterBar);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterBar);

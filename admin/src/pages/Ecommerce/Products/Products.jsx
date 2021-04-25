@@ -9,18 +9,6 @@ import { connect } from "react-redux";
 import { selectIsDataFetching } from "../../Store/shop/shop.selectors";
 import MobileFullScreenFilterDialog from '../mobile-fullscreen-filter-dialog/mobile-fullscreen-filter-dialog.component'
 import {
-  Container,
-  Card,
-  CardBody,
-  Row,
-  Col,
-  Collapse,
-  CardHeader,
-  Input,
-  Label,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Breadcrumb
 } from "reactstrap";
 const ProductPage = ({ }) => {
@@ -102,8 +90,8 @@ const ProductPage = ({ }) => {
     </div>
   );
 };
-// const mapStateToProps = createStructuredSelector({
-//   isLoading: selectIsDataFetching,
-// });
+const mapStateToProps = createStructuredSelector({
+  isLoading: selectIsDataFetching,
+});
 
-export default connect(null, null)(ProductPage);
+export default connect(mapStateToProps, null)(ProductPage);

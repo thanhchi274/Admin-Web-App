@@ -15,8 +15,9 @@ import Dashboard from "../pages/Dashboard/index";
 import Products from "../pages/Ecommerce/Products";
 import ProductDetail from "../pages/Ecommerce/ProductDetail";
 import Orders from "../pages/Ecommerce/Orders";
-import Customers from "../pages/Ecommerce/Customers";
+import Feedback from "../pages/Ecommerce/Feedback";
 import AddProduct from "../pages/Ecommerce/AddProduct";
+import EditProduct from "../pages/Ecommerce/EditProduct";
 // Charts
 import ChartApex from "../pages/Charts/Apexcharts";
 import ChartjsChart from "../pages/Charts/ChartjsChart";
@@ -77,18 +78,13 @@ import EditableTables from "../pages/Tables/EditableTables";
 import Login1 from "../pages/AuthenticationInner/Login";
 import Register1 from "../pages/AuthenticationInner/Register";
 import ForgetPwd1 from "../pages/AuthenticationInner/ForgetPassword";
-import KanbanBoard from "../pages/KanbanBoard/index";
 
 const authProtectedRoutes = [
-  //Kanban Board
-  { path: "/apps-kanban-board", component: KanbanBoard },
-
   // Tables
   { path: "/tables-basic", component: BasicTables },
   { path: "/tables-datatable", component: DatatableTables },
   { path: "/tables-responsive", component: ResponsiveTables },
   { path: "/tables-editable", component: EditableTables },
-
   // Ui
   { path: "/ui-cards", component: UiCards },
   { path: "/ui-carousel", component: UiCarousel },
@@ -135,9 +131,10 @@ const authProtectedRoutes = [
 
   //Ecommerce
   { path: "/products", component: Products },
-  { path: "/product-detail", component: ProductDetail },
+  { path: "/product-detail/:id", component: ProductDetail },
+  { path: "/product-edit/:id", component: EditProduct },
   { path: "/orders", component: Orders },
-  { path: "/customers", component: Customers },
+  { path: "/feedback", component: Feedback },
   { path: "/add-product", component: AddProduct },
   { path: "/dashboard", component: Dashboard },
   // this route should be at the end of all other routes
