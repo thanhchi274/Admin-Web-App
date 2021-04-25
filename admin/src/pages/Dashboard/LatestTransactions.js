@@ -163,22 +163,6 @@ class LatestTransactions extends Component {
                             <Col lg={8}>
                                 <Card>
                                     <CardBody>
-                                        <Dropdown isOpen={this.state.menu} toggle={() => this.setState({menu : !this.state.menu})} className="float-right">
-                                            <DropdownToggle tag="i" className="arrow-none card-drop">
-                                                <i className="mdi mdi-dots-vertical"></i>
-                                            </DropdownToggle>
-                                            <DropdownMenu right>
-                                                
-                                                <DropdownItem>Sales Report</DropdownItem>
-                                                
-                                                <DropdownItem>Export Report</DropdownItem>
-                                                
-                                                <DropdownItem>Profit</DropdownItem>
-                                                
-                                                <DropdownItem>Action</DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
-
                                         <h4 className="card-title mb-4">Latest Transactions</h4>
 
                                         <BootstrapTable

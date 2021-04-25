@@ -53,10 +53,25 @@ const getHistorySummary = asyncHandler(async (req, res) => {
       $lt: `2021-0${currentMonthByNumber}-01 00:00:00`,
     },
   });
+  function plusSalesPreviousMonth(n) {
+    return parseInt(n.amount);
+  }  function plusSalesMonth(n) {
+    return parseInt(n.amount);
+  }
+ const mapPreviousMonthAmount =  _.map(filterTransactionPreviousMonth, plusSalesPreviousMonth)
+ const mapThisMonthAmount =  _.map(filterTransactionMonthly, plusSalesMonth)
+const totalPreviousMonth = _.reduce(mapPreviousMonthAmount, function(sum, n) {
+    return sum + n;
+  }, 0);
+  const totalThisMonth = _.reduce(mapThisMonthAmount, function(sum, n) {
+    return sum + n;
+  }, 0);
   const result = {
     totalMoneyAndSales,
     filterTransactionMonthly,
     filterTransactionPreviousMonth,
+    totalThisMonth,
+    totalPreviousMonth,
     TotalProduct: totalProduct.length,
   };
   historyTransaction

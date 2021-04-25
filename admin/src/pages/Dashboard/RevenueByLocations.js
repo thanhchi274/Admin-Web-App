@@ -19,22 +19,6 @@ class RevenueByLocations extends Component {
                             <Col lg={4}>
                                 <Card>
                                     <CardBody>
-                                        <Dropdown className="float-right" isOpen={this.state.menu} toggle={() => this.setState({menu : !this.state.menu})}>
-                                            <DropdownToggle tag="i" className="darrow-none card-drop" aria-expanded="false">
-                                                <i className="mdi mdi-dots-vertical"></i>
-                                            </DropdownToggle>
-                                            <DropdownMenu right>
-                                                
-                                                <DropdownItem href="">Sales Report</DropdownItem>
-                                                
-                                                <DropdownItem href="">Export Report</DropdownItem>
-                                                
-                                                <DropdownItem href="">Profit</DropdownItem>
-                                                
-                                                <DropdownItem href="">Action</DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
-
                                         <h4 className="card-title mb-4">Revenue by Locations</h4>
 
                                         <div id="usa-vectormap" style={{height: "196px"}}>
@@ -50,26 +34,12 @@ class RevenueByLocations extends Component {
                                                 <div className="mt-2">
                                                     <div className="clearfix py-2">
                                                         <h5 className="float-right font-size-16 m-0">$ 2542</h5>
-                                                        <p className="text-muted mb-0 text-truncate">California :</p>
+                                                        <p className="text-muted mb-0 text-truncate">Ho Chi Minh :</p>
                                                         
                                                     </div>
                                                     <div className="clearfix py-2">
                                                         <h5 className="float-right font-size-16 m-0">$ 2245</h5>
-                                                        <p className="text-muted mb-0 text-truncate">Nevada :</p>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </Col>
-                                            <Col xl={{size:5, offset:1}} md={6}>
-                                                <div className="mt-2">
-                                                    <div className="clearfix py-2">
-                                                        <h5 className="float-right font-size-16 m-0">$ 2156</h5>
-                                                        <p className="text-muted mb-0 text-truncate">Montana :</p>
-                                                        
-                                                    </div>
-                                                    <div className="clearfix py-2">
-                                                        <h5 className="float-right font-size-16 m-0">$ 1845</h5>
-                                                        <p className="text-muted mb-0 text-truncate">Texas :</p>
+                                                        <p className="text-muted mb-0 text-truncate">Ha Noi :</p>
                                                         
                                                     </div>
                                                 </div>

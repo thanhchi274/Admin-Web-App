@@ -8,11 +8,11 @@ import "./dashboard.scss";
 class RevenueAnalytics extends Component {
     state = {
         series: [{
-            name: '2020',
+            name: '2021',
             type: 'column',
             data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16]
         }, {
-            name: '2019',
+            name: '2020',
             type: 'line',
             data: [23, 32, 27, 38, 27, 32, 27, 38, 22, 31, 21, 16]
         }],

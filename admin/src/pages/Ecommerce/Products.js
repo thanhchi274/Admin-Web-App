@@ -312,7 +312,6 @@ const Products =({fetchDataStart,productsData})=>{
                           </div>
                         </Col>
                       </Row>
-
                       <ul className="list-inline my-3 ecommerce-sortby-list">
                         <li className="list-inline-item">
                           <span className="font-weight-medium font-family-secondary">

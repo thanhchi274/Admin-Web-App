@@ -1,21 +1,18 @@
 import { combineReducers  } from 'redux';
-
-// Front
+import {persistReducer} from 'redux-persist'
 import Layout from './layout/reducer';
-
-// Authentication Module
-import Account from './auth/register/reducer';
-import Login from './auth/login/reducer';
-import Forget from './auth/forgetpwd/reducer';
+import storage from 'redux-persist/lib/storage'
+import userReducer from './user/user.reducer.js'
 import Product from './product/product.reducer'
 import AnalysisData from './analysis/analysis.reducer'
+const persistConfig ={
+    key: 'root',
+    storage
+}
 const rootReducer = combineReducers({
     Layout,
-    Account,
-    Login,
-    Forget,
+    user: userReducer,
     product:Product,
     analysis: AnalysisData
 });
-
-export default rootReducer;
+export default persistReducer(persistConfig,rootReducer);

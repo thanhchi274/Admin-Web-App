@@ -94,15 +94,6 @@ class SidebarContent extends Component {
                 <span className="ml-1">{this.props.t("Dashboard")}</span>
               </Link>
             </li>
-
-            <li>
-              <Link to="calendar" className=" waves-effect">
-                <i className="ri-calendar-2-line"></i>
-                <span className="ml-1">{this.props.t("Calendar")}</span>
-              </Link>
-            </li>
-
-
             <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="ri-store-2-line"></i>
@@ -110,28 +101,20 @@ class SidebarContent extends Component {
               </Link>
               <ul className="sub-menu" aria-expanded="false">
                 <li>
-                  <Link to="ecommerce-products">
+                  <Link to="products">
                     {this.props.t("Products")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="ecommerce-orders">{this.props.t("Orders")}</Link>
+                  <Link to="orders">{this.props.t("Orders")}</Link>
                 </li>
                 <li>
-                  <Link to="ecommerce-customers">
+                  <Link to="customers">
                     {this.props.t("Customers")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="ecommerce-cart">{this.props.t("Cart")}</Link>
-                </li>
-                <li>
-                  <Link to="ecommerce-checkout">
-                    {this.props.t("CheckOut")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="ecommerce-add-product">
+                  <Link to="add-product">
                     {this.props.t("Add Product")}
                   </Link>
                 </li>

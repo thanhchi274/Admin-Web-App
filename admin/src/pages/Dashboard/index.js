@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-//Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
-//Import Components
 import MiniWidgets from "./MiniWidgets";
 import RevenueAnalytics from "./RevenueAnalytics";
 import SalesAnalytics from "./SalesAnalytics";
@@ -19,25 +17,26 @@ import {
   selectTotalMoneyAndSales,
   selectTotalProductAverage,
   selectFilterTransactionPreviousMonth,
+  selectTotalSalesPreviousMonth,
+  selectTotalSalesThisMonth
 } from "../../store/analysis/analysis.selectors";
 import Spinner from "../../components/spinner/spinner.component";
-const Dashboard = ({ fetchDataStart, analysisData, totalProduct,averageValue,Monthly }) => {
+const Dashboard = ({ fetchDataStart, analysisData, totalProduct,averageValue,Monthly ,PreviousMonthly, totalSalesPreviousMonth,
+  totalSalesThisMonth}) => {
   const [breadcrumbsData, setBreadcrumbsData] = useState([
     { title: "Thanh Chi Clothing", link: "/dashboard" },
     { title: "Dashboard", link: "/dashboard" },
   ]);
-  const [SampleMinWidgetData, setSampleMinWidgetData] = useState([]);
-  const [currentMonth, setCurrentMonth] = useState("January");
   useEffect(() => {
     fetchDataStart();
   }, [fetchDataStart]);
-  return analysisData ? (
+  return analysisData&&PreviousMonthly&&Monthly ? (
     <>
       <div className="page-content">
         <Container fluid>
           <Breadcrumbs title="Dashboard" breadcrumbItems={breadcrumbsData} />
+          {console.log(((totalSalesThisMonth-totalSalesPreviousMonth)/totalSalesPreviousMonth*100))}
           <Row>
-              {console.log(Monthly)}
             <Col xl={8}>
               <Row>
                 <MiniWidgets
@@ -46,63 +45,35 @@ const Dashboard = ({ fetchDataStart, analysisData, totalProduct,averageValue,Mon
                       icon: "ri-stack-line",
                       title: "Number of Sales",
                       value: `${Monthly.length}`,
-                      rate: "2.4%",
+                      rate: `${((Monthly.length-PreviousMonthly.length)/PreviousMonthly.length*100)}`+'%',
                       desc: "From previous period",
                     },
                     {
                       icon: "ri-store-2-line",
                       title: "Sales Revenue",
-                      value: "$ 38452",
-                      rate: "2.4%",
+                      value: `${totalSalesThisMonth}`,
+                      rate: `${((totalSalesThisMonth-totalSalesPreviousMonth)/totalSalesPreviousMonth*100)}`+'%',
                       desc: "From previous period",
                     },
                     {
                       icon: "ri-briefcase-4-line",
-                      title: "Average Price",
-                      value: "$ 15.4",
-                      rate: "2.4%",
-                      desc: "From previous period",
-                    },
-                    {
-                      icon: "ri-briefcase-4-line",
-                      title: `Total Product`,
-                      value: `$ ${totalProduct}`,
-                      rate: "2.4%",
-                      desc: "From previous period",
-                    },
-                    {
-                      icon: "ri-briefcase-4-line",
-                      title: "Average Price each bill",
+                      title: "Average Price each Bill",
                       value: `$ ${Math.round(averageValue,1)}`,
-                      rate: "2.4%",
-                      desc: "From previous period",
-                    },
-                    {
-                      icon: "ri-briefcase-4-line",
-                      title: "Average Price",
-                      value: "$ 15.4",
                       rate: "2.4%",
                       desc: "From previous period",
                     },
                   ]}
                 />
               </Row>
-              {/* revenue Analytics */}
               <RevenueAnalytics />
             </Col>
 
             <Col xl={4}>
-              {/* sales Analytics */}
               <SalesAnalytics />
-              {/* earning reports */}
-              <EarningReports />
               <EarningReports />
             </Col>
           </Row>
           <Row>
-            {/* recent activity */}
-            {/* <RecentlyActivity /> */}
-            {/* revenue by locations */}
             <RevenueByLocations />
             <LatestTransactions />
           </Row>
@@ -110,7 +81,13 @@ const Dashboard = ({ fetchDataStart, analysisData, totalProduct,averageValue,Mon
       </div>
     </>
   ) : (
-    <Spinner />
+    <div id="preloader">
+    <div id="status">
+        <div className="spinner">
+            <i className="ri-loader-line spin-icon"></i>
+        </div>
+    </div>
+</div>
   );
 };
 
@@ -118,7 +95,10 @@ const mapStateToProps = createStructuredSelector({
   analysisData: selectData,
   totalProduct: selectTotalProductQuantity,
   averageValue:selectTotalProductAverage,
-  Monthly:selectFilterTransactionMonthly
+  Monthly:selectFilterTransactionMonthly,
+  PreviousMonthly:selectFilterTransactionPreviousMonth,
+  totalSalesPreviousMonth:selectTotalSalesPreviousMonth,
+  totalSalesThisMonth:selectTotalSalesThisMonth
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchDataStart: () => dispatch(fetchDataStart()),

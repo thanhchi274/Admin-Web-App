@@ -74,22 +74,6 @@ class EarningReports extends Component {
             <React.Fragment>
                                 <Card>
                                     <CardBody>
-                                        <Dropdown className="float-right" isOpen={this.state.menu} toggle={() => this.setState({menu : !this.state.menu})} >
-                                            <DropdownToggle tag="i" className="arrow-none card-drop" >
-                                                <i className="mdi mdi-dots-vertical"></i>
-                                            </DropdownToggle>
-                                            <DropdownMenu right>
-                                                
-                                                <DropdownItem href="">Sales Report</DropdownItem>
-                                                
-                                                <DropdownItem href="">Export Report</DropdownItem>
-                                                
-                                                <DropdownItem href="">Profit</DropdownItem>
-                                                
-                                                <DropdownItem href="">Action</DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
-
                                         <h4 className="card-title mb-4">Earning Reports</h4>
                                         <div className="text-center">
                                             <Row>

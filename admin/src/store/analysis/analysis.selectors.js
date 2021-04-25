@@ -17,7 +17,9 @@ export const selectTotalProductQuantity =createSelector([selectTotalMoneyAndSale
 export const selectTotalProductAverage =createSelector([selectTotalMoneyAndSales], shop=>shop?shop[0].AverageValue:null)
 export const selectTransactionThisMonth =createSelector([selectTotalMoneyAndSales], shop=>shop?shop[0].filterTransactionMonthly:null)
 export const selectFilterTransactionMonthly =createSelector([selectData], shop=>shop?shop.filterTransactionMonthly:null)
-export const selectFilterTransactionPreviousMonth=createSelector([selectData], shop=>shop.filterTransactionPreviousMonth)
+export const selectFilterTransactionPreviousMonth=createSelector([selectData], shop=>shop?shop.filterTransactionPreviousMonth:null)
+export const selectTotalSalesPreviousMonth =createSelector([selectData], shop=>shop?shop.totalPreviousMonth:null)
+export const selectTotalSalesThisMonth =createSelector([selectData], shop=>shop?shop.totalThisMonth:null)
 export const selectDataTopCollection = createSelector(
   [selectData],
   (topCollections) =>

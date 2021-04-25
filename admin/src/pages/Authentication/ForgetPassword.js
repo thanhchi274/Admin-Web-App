@@ -9,9 +9,6 @@ import { withRouter, Link } from "react-router-dom";
 // availity-reactstrap-validation
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
-// action
-import { forgetUser } from '../../store/actions';
-
 // import images
 import Logo from "../../assets/SVG/crown.svg";
 
@@ -99,5 +96,5 @@ const mapStatetoProps = state => {
 }
 
 export default withRouter(
-  connect(mapStatetoProps, { forgetUser })(ForgetPasswordPage)
+  connect(mapStatetoProps,null)(ForgetPasswordPage)
 );

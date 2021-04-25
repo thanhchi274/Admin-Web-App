@@ -9,10 +9,6 @@ import ForgetPwd from "../pages/Authentication/ForgetPassword";
 
 // Dashboard
 import Dashboard from "../pages/Dashboard/index";
-
-// Pages Calendar
-import Calendar from "../pages/Calendar/Calendar";
-
 // Pages Component
 
 //Ecommerce Pages
@@ -20,8 +16,6 @@ import Products from "../pages/Ecommerce/Products";
 import ProductDetail from "../pages/Ecommerce/ProductDetail";
 import Orders from "../pages/Ecommerce/Orders";
 import Customers from "../pages/Ecommerce/Customers";
-import Cart from "../pages/Ecommerce/Cart";
-import CheckOut from "../pages/Ecommerce/CheckOut";
 import AddProduct from "../pages/Ecommerce/AddProduct";
 // Charts
 import ChartApex from "../pages/Charts/Apexcharts";
@@ -54,8 +48,6 @@ import FormWizard from "../pages/Forms/FormWizard";
 import FormXeditable from "../pages/Forms/FormXeditable";
 
 //Ui
-import UiAlert from "../pages/Ui/UiAlert";
-import UiButtons from "../pages/Ui/UiButtons";
 import UiCards from "../pages/Ui/UiCards";
 import UiCarousel from "../pages/Ui/UiCarousel";
 import UiDropdown from "../pages/Ui/UiDropdown";
@@ -85,8 +77,6 @@ import EditableTables from "../pages/Tables/EditableTables";
 import Login1 from "../pages/AuthenticationInner/Login";
 import Register1 from "../pages/AuthenticationInner/Register";
 import ForgetPwd1 from "../pages/AuthenticationInner/ForgetPassword";
-
-//Kanban Board
 import KanbanBoard from "../pages/KanbanBoard/index";
 
 const authProtectedRoutes = [
@@ -144,25 +134,21 @@ const authProtectedRoutes = [
   { path: "/charts-knob", component: ChartsKnob },
 
   //Ecommerce
-  { path: "/ecommerce-products", component: Products },
-  { path: "/ecommerce-product-detail", component: ProductDetail },
-  { path: "/ecommerce-orders", component: Orders },
-  { path: "/ecommerce-customers", component: Customers },
-  { path: "/ecommerce-checkout", component: CheckOut },
-  { path: "/ecommerce-cart", component: Cart },
-  { path: "/ecommerce-add-product", component: AddProduct },
-  //calendar
-  { path: "/calendar", component: Calendar },
+  { path: "/products", component: Products },
+  { path: "/product-detail", component: ProductDetail },
+  { path: "/orders", component: Orders },
+  { path: "/customers", component: Customers },
+  { path: "/add-product", component: AddProduct },
   { path: "/dashboard", component: Dashboard },
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
 ];
 
 const publicRoutes = [
-  // { path: "/logout", component: Logout },
-  // { path: "/login", component: Login },
-  // { path: "/forgot-password", component: ForgetPwd },
-  // { path: "/register", component: Register },
+  { path: "/logout", component: Logout },
+  { path: "/login", component: Login },
+  { path: "/forgot-password", component: ForgetPwd },
+  { path: "/register", component: Register },
 
   // Authentication Inner
   { path: "/auth-login", component: Login1 },

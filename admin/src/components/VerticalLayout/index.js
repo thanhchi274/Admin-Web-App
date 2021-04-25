@@ -10,8 +10,6 @@ import {
   changeTopbarTheme,
   changeLayoutWidth
 } from "../../store/actions";
-
-// Layout Related Components
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
@@ -36,28 +34,27 @@ class Layout extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      if(this.props.isPreloader === true)
-        {
-          document.getElementById('preloader').style.display = "block";
-          document.getElementById('status').style.display = "block";
+      // if(this.props.isLoading === true)
+      //   {
+      //     document.getElementById('preloader').style.display = "block";
+      //     document.getElementById('status').style.display = "block";
 
-          setTimeout(function(){ 
+      //     setTimeout(function(){
 
-          document.getElementById('preloader').style.display = "none";
-          document.getElementById('status').style.display = "none";
+      //     document.getElementById('preloader').style.display = "none";
+      //     document.getElementById('status').style.display = "none";
 
-          }, 2500);
-        }
-        else
-        {
-          document.getElementById('preloader').style.display = "none";
-          document.getElementById('status').style.display = "none";
-        }
+      //     }, 2500);
+      //   }
+      //   else
+      //   {
+      //     document.getElementById('preloader').style.display = "none";
+      //     document.getElementById('status').style.display = "none";
+      //   }
     }
 }
 
   componentDidMount() {
-    // Scroll Top to 0
     window.scrollTo(0, 0);
     let currentage = this.capitalizeFirstLetter(this.props.location.pathname);
 
@@ -93,13 +90,13 @@ class Layout extends Component {
   render() {
     return (
       <React.Fragment>
-        <div id="preloader">
+        {/* <div id="preloader">
             <div id="status">
                 <div className="spinner">
                     <i className="ri-loader-line spin-icon"></i>
                 </div>
             </div>
-        </div>
+        </div> */}
 
 
         <div id="layout-wrapper">

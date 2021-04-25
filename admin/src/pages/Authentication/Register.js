@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Button, Alert, Container, Label, FormGroup } from "reactstrap";
-
 // availity-reactstrap-validation
 import { AvForm, AvField } from "availity-reactstrap-validation";
-
-// action
-import {  registerUser, registerUserFailed, apiError } from '../../store/actions';
-
 // Redux
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -119,4 +114,4 @@ const mapStatetoProps = state => {
   return { user, registrationError, loading };
 }
 
-export default connect(mapStatetoProps, { registerUser, apiError, registerUserFailed })(Register);
+export default connect(mapStatetoProps, null)(Register);
