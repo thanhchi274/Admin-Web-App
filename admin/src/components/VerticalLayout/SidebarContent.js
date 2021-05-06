@@ -121,7 +121,7 @@ class SidebarContent extends Component {
               </ul>
             </li>
             <li>
-              <NavLink to="/form-advanced" className=" waves-effect">
+              <NavLink to="/marketing" className=" waves-effect">
                 <i className="ri-artboard-2-line"></i>
                 <span className="ml-1">{this.props.t("Email Marketing")}</span>
               </NavLink>

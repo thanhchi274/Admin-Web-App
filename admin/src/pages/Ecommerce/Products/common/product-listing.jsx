@@ -6,7 +6,7 @@ const ProductListing=({data}) => {
     <Row className="no-gutters">
     {data.map((item, index)=>{
     return(
-      <ProductItems  data={item}/>
+      <ProductItems key={index}  data={item}/>
     )
   })}
    </Row>

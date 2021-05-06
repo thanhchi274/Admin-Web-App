@@ -14,7 +14,7 @@ const AppRoute = ({
   <Route
     {...rest}
     render={(props) => {
-      if (isAuthProtected && !localStorage.getItem("user")) {
+      if (isAuthProtected && !localStorage.getItem("user")&&!localStorage.getItem("role")) {
         return (
           <Redirect
             to={{ pathname: "/login", state: { from: props.location } }}

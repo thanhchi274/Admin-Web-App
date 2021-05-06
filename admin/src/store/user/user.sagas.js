@@ -1,6 +1,6 @@
 import { takeLatest, all, call, put,select } from "redux-saga/effects";
 import UserActionTypes from "./user.type";
-import { getUserExtraRef, cloudStorage } from '../../firebase/firebase.util';
+import { getUserExtraRef, cloudStorage, firestore } from '../../firebase/firebase.util';
 import { selectCurrentUser } from '../user/user.selector';
 // import {selectSingleProduct} from '../shop/shop.selectors'
 import {
@@ -16,11 +16,24 @@ import _ from 'lodash'
 
 export function* getSnapshotFromAuth(userAuth,additionalData) {
   try {
+    let userRole = []
+    let populateData = data=>{
+      userRole.push(data);
+    }
     const userRef = yield call(createUserProfileDocument, userAuth, additionalData);
     const userSnapShot = yield userRef.get();
     const providerData = [...userAuth.providerData]
-    yield localStorage.setItem("user",userSnapShot.id)
-    yield put(signInSuccess({ id: userSnapShot.id, ...userSnapShot.data(), providerData }));
+    let userEmail = userSnapShot.data().email
+    yield firestore.collection('valid_data').where('email','==',userEmail).get().then((querySnapshot) =>
+    {
+      return querySnapshot.forEach((doc) => { return populateData(doc.data())
+    });
+  })
+    if(userRole.length>0){
+      yield localStorage.setItem("user",userSnapShot.id)
+      yield localStorage.setItem("role", userRole[0].role)
+      yield put(signInSuccess({ id: userSnapShot.id, ...userSnapShot.data(), providerData }));
+    }
   } catch (err) {
     yield put(signInFailure({ err }));
   }
@@ -29,24 +42,21 @@ export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
     yield getSnapshotFromAuth(user);
-    yield window.location.href='/dashboard'
+    if(localStorage.getItem("role")==="undefined"){
+      yield window.location.href='/login'
+    }
+    else{
+      yield window.location.href='/dashboard' 
+    }
   } catch (err) {
     yield put(signInFailure({ err }));
-  }
-}
-export function* signInWithEmail({ payload: { email, password } }) {
-  try {
-    const { user } = yield auth.signInWithEmailAndPassword(email, password);
-    yield getSnapshotFromAuth(user);
-    yield window.location.href='/dashboard'
-  } catch (err) {
-    yield put(signInFailure(err));
   }
 }
 export function* signOut(){
   try {
     yield auth.signOut()
     yield localStorage.removeItem('user')
+    yield localStorage.removeItem('role')
     yield put(signOutSuccess())
     yield window.location.href='/login'
   } catch (error) {
@@ -96,9 +106,6 @@ export function* updateUserProfileAsync({userCredentials}){
       yield put(updateUserFailure(error))
     }
   }
-}
-export function* onEmailSignInStart() {
-  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
@@ -158,5 +165,5 @@ export function* fetchHistoryUserAsync(){
   }
 }
 export function* userSagas() {
-  yield all([call(onGoogleSignInStart), call(onEmailSignInStart), call(onCheckUserSessions), call(onSignOutStart),call(onSignUpStart) ,call(onSignUpSuccess), call(onUserDataChange), call(fetchHistoryUserStart) ]);
+  yield all([call(onGoogleSignInStart), call(onCheckUserSessions), call(onSignOutStart),call(onSignUpStart) ,call(onSignUpSuccess), call(onUserDataChange), call(fetchHistoryUserStart) ]);
 }

@@ -14,14 +14,17 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import Dropzone from "react-dropzone";
 import Select from "react-select";
-import { fetchSingleProductStart,editProductStart } from "../../store/product/product.actions";
+import {
+  fetchSingleProductStart,
+  editProductStart,
+} from "../../store/product/product.actions";
 import {
   selectSingleProduct,
   selectIsDataFetching,
@@ -34,14 +37,14 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
-
+import LinkImageLink from '../../components/ListImageLink/listImageLink.component'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     backgroundColor: theme.palette.background.paper,
   },
 }));
-const AddProduct = ({
+const EditProduct = ({
   fetchSingleProductStart,
   isFetching,
   singleProduct,
@@ -91,8 +94,19 @@ const AddProduct = ({
     { value: "M", label: "Size M" },
     { value: "L", label: "Size L" },
   ];
-  const colors=["red", 'green', 'orange', 'black','white','yellow','blue','gray']
-  let colorCheck = product? colors.filter(x => product.colors.includes(x)):null
+  const colors = [
+    "red",
+    "green",
+    "orange",
+    "black",
+    "white",
+    "yellow",
+    "blue",
+    "gray",
+  ];
+  let colorCheck = product
+    ? colors.filter((x) => product.colors.includes(x))
+    : null;
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
 
@@ -106,23 +120,23 @@ const AddProduct = ({
     }
     setChecked(newChecked);
   };
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    editProductStart({ product, files:selectedFiles })
+    editProductStart({ product, files: selectedFiles });
   };
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
-    console.log(product)
+    console.log(product);
     setProduct({
       ...product,
       [name]: value,
     });
   };
-  const handleChangeTags = event=>{
+  const handleChangeTags = (event) => {
     const { value, name } = event.target;
-    setProduct({...product, [name]:[value]})
-  }
-  return singleProduct && product !==null && isFetching === false ? (
+    setProduct({ ...product, [name]: [value] });
+  };
+  return singleProduct && product !== null && isFetching === false ? (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
@@ -176,7 +190,7 @@ const AddProduct = ({
                               id="productname"
                               name="productname"
                               type="text"
-                              name='name'
+                              name="name"
                               value={product.name}
                               onChange={handleChange}
                               className="form-control"
@@ -188,7 +202,11 @@ const AddProduct = ({
                                 <Label className="control-label">
                                   Manufacturer Brand
                                 </Label>
-                                <select className="form-control select2" name="tags" onChange={handleChangeTags}>
+                                <select
+                                  className="form-control select2"
+                                  name="tags"
+                                  onChange={handleChangeTags}
+                                >
                                   <option>{product.tags}</option>
                                   <option value="EL">Louis Vuiton</option>
                                   <option value="FA">Gucci</option>
@@ -205,7 +223,7 @@ const AddProduct = ({
                                   id="manufacturerbrand"
                                   name="manufacturerbrand"
                                   type="number"
-                                  name='price'
+                                  name="price"
                                   value={product.price}
                                   onChange={handleChange}
                                   disabled={true}
@@ -220,7 +238,7 @@ const AddProduct = ({
                                   id="price"
                                   name="price"
                                   type="number"
-                                  name='discount'
+                                  name="discount"
                                   max="100"
                                   min="0"
                                   onChange={handleChange}
@@ -249,7 +267,9 @@ const AddProduct = ({
                                           <Checkbox
                                             edge="start"
                                             checked={
-                                                colorCheck.includes(value)? checked.indexOf(value) !== 1:checked.indexOf(value) !== -1
+                                              colorCheck.includes(value)
+                                                ? checked.indexOf(value) !== 1
+                                                : checked.indexOf(value) !== -1
                                             }
                                             tabIndex={-1}
                                             disableRipple={false}
@@ -283,6 +303,7 @@ const AddProduct = ({
                                   className="select2 select2-multiple"
                                 />
                               </FormGroup>
+                             <LinkImageLink data={singleProduct.variants}/>
                             </Col>
                           </Row>
                           <FormGroup>
@@ -293,7 +314,7 @@ const AddProduct = ({
                               className="form-control"
                               id="productdesc"
                               rows="5"
-                              name='shortDetails'
+                              name="shortDetails"
                               onChange={handleChange}
                               defaultValue={product.shortDetails}
                             ></textarea>
@@ -306,7 +327,7 @@ const AddProduct = ({
                               className="form-control"
                               id="productdesc"
                               rows="5"
-                              name='description'
+                              name="description"
                               onChange={handleChange}
                               defaultValue={product.description}
                             ></textarea>
@@ -316,7 +337,9 @@ const AddProduct = ({
                       <TabPane tabId={2}>
                         <h4 className="card-title">Upload product image</h4>
                         <Form>
-                          <Dropzone maxFiles={3}  accept= 'image/jpeg, image/png'
+                          <Dropzone
+                            maxFiles={4}
+                            accept="image/jpeg, image/png"
                             onDrop={(acceptedFiles) =>
                               handleAcceptedFiles(acceptedFiles)
                             }
@@ -396,13 +419,15 @@ const AddProduct = ({
                         className={activeTab === 2 ? "next disabled" : "next"}
                       >
                         <Button
-                          color="success" 
+                          color="success"
                           type="submit"
-                          onClick={(event) =>activeTab!==2 ?
-                            toggleTab(activeTab + 1)
-                          :handleSubmit(event)}
+                          onClick={(event) =>
+                            activeTab !== 2
+                              ? toggleTab(activeTab + 1)
+                              : handleSubmit(event)
+                          }
                         >
-                        {activeTab === 2 ? "Finish" : "Next"}
+                          {activeTab === 2 ? "Finish" : "Next"}
                         </Button>
                       </li>
                     </ul>
@@ -430,6 +455,6 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchSingleProductStart: (data) => dispatch(fetchSingleProductStart(data)),
-  editProductStart: (data) => dispatch(editProductStart(data))
+  editProductStart: (data) => dispatch(editProductStart(data)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProduct);

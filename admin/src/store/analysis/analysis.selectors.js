@@ -12,19 +12,32 @@ export const selectProductComment =createSelector([selectSingleProduct], product
 export const selectRelatedProduct= createSelector([selectShop],shop=>shop.relatedProduct)
 export const selectProductRelatedTag = createSelector([selectSingleProduct],product=> product?_.head(product[0].tags):null)
 export const selectData = createSelector([selectShop], (shop) => shop.data);
+export const selectOrderData = createSelector([selectShop],shop=>shop.orderHistory)
+export const selectDisplayOrderData = createSelector([selectShop],shop=> shop.displayOrder)
 export const selectTotalMoneyAndSales = createSelector([selectData], shop=>shop? shop.totalMoneyAndSales:null)
 export const selectTotalProductQuantity =createSelector([selectTotalMoneyAndSales], shop=>shop?shop[0].TotalQuantity:null)
 export const selectTotalProductAverage =createSelector([selectTotalMoneyAndSales], shop=>shop?shop[0].AverageValue:null)
 export const selectTransactionThisMonth =createSelector([selectTotalMoneyAndSales], shop=>shop?shop[0].filterTransactionMonthly:null)
+export const selectOrderHistorySize =createSelector([selectShop],shop=>shop?shop.orderHistorySize:null)
 export const selectFilterTransactionMonthly =createSelector([selectData], shop=>shop?shop.filterTransactionMonthly:null)
 export const selectFilterTransactionPreviousMonth=createSelector([selectData], shop=>shop?shop.filterTransactionPreviousMonth:null)
+export const selectLatestTransaction = createSelector([selectData],shop=>shop?shop.latestTransactions:null)
 export const selectTotalSalesPreviousMonth =createSelector([selectData], shop=>shop?shop.totalPreviousMonth:null)
 export const selectTotalSalesThisMonth =createSelector([selectData], shop=>shop?shop.totalThisMonth:null)
+export const selectGucciProduct = createSelector([selectData],shop=>shop?shop.lengthGucciProduct:null)
+export const selectLVProduct = createSelector([selectData],shop=>shop?shop.lengthLVProduct:null)
+export const selectNikeProduct = createSelector([selectData],shop=>shop?shop.lengthNikeProduct:null)
+export const selectAdidasProduct = createSelector([selectData],shop=>shop?shop.lengthAdidasProduct:null)
+export const totalProductCurrent = createSelector([selectData],shop=>shop?(parseInt(shop.lengthAdidasProduct)+parseInt(shop.lengthNikeProduct)+parseInt(shop.lengthGucciProduct)+parseInt(shop.lengthLVProduct)):null)
+export const selectTotalPreviousYear = createSelector([selectData],shop=>shop?shop.totalPreviousYear:null)
+export const selectTotalCurrentYear = createSelector([selectData],shop=>shop?shop.totalCurrentYear:null)
+export const selectHistorySupport = createSelector([selectShop],shop=>shop?shop.supportData:null)
 export const selectDataTopCollection = createSelector(
   [selectData],
   (topCollections) =>
     topCollections ? _.filter(topCollections, { category: "women" }) : null
 );
+export const selectMonthlyNumberPayment = createSelector([selectData],shop=>shop?shop.MonthlyNumberPayment:null)
 export const selectIsDataFetching = createSelector(
   [selectShop],
   (shop) => shop.isFetching

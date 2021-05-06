@@ -1,12 +1,12 @@
 import { createSelector } from "reselect";
 import _ from "lodash";
 const selectShop = (state) => state.product;
-let min =100;
-let max =1000
+let min =1;
+let max =1000000000
 export const selectFilter = state => state.filter
 export const test = state=>state.product.paginationItem
 export const selectSearchData = createSelector([selectShop], product=>product.searchData)
-export const selectPaginationValue = createSelector([selectShop], product=>product.paginationItem )
+export const selectPaginationValue = createSelector([selectShop], product=>product.pagination )
 export const selectSingleProduct = createSelector([selectShop],product=>product.singleProduct?product.singleProduct[0]:null)
 export const selectProductComment =createSelector([selectSingleProduct], product=>product[0].comment)
 export const selectRelatedProduct= createSelector([selectShop],product=>product.relatedProduct)
@@ -19,6 +19,7 @@ export const selectDataIsMapping = createSelector([selectData], (data) =>
     })
     : null
 );
+export const selectTotalProductSize = createSelector([selectDataIsMapping],data=>data?data.pop():null)
 export const selectDataTopCollection = createSelector(
   [selectDataIsMapping],
   (topCollections) =>
@@ -33,14 +34,6 @@ export const getBestSeller = createSelector(
   (bestSellerProduct) =>
     bestSellerProduct ? _.filter(bestSellerProduct, { sale: true }) : null
 );
-// export const getRelatedItems = createSelector(selectDataIsMapping,
-//   (products) => products ?
-//   _.find(products,item=>{
-//     const relatedItems =_.find(item.tags,(value)=>{
-//      value ===selectProductRelatedTag
-//    })
-//    return relatedItems
-//   }):null)
 export const getTrendingTagCollection = (products, type, tag) => {
   const items = products.filter(product => {
       return product.category === type && product.tags.includes(tag);
@@ -93,13 +86,14 @@ export const getVisibleproducts = createSelector(selectDataIsMapping, selectFilt
   (data, filterProduct) =>
     (data && filterProduct) ?
       data.filter(item => {
+        const { brand, color, value } = filterProduct
         let brandMatch;
         let colorMatch;
-        const { brand, color, value } = filterProduct
         _.isEmpty(brand)===false?(item.tags ? (brandMatch = item.tags.some((tag) => brand.includes(`${tag}`))) : (brandMatch = false)):brandMatch =true;
         (_.isEmpty(color)===false&& item.colors) ? (colorMatch = item.colors.includes(color)) : (colorMatch = true)
-        const startPriceMatch =typeof value.min !== "number" || value.min <= item.price;
-        const endPriceMatch =typeof value.max !== "number" || item.price <= value.max;
+        const startPriceMatch =typeof value.min !== "number" || value.min <= parseInt(item.price);
+        const endPriceMatch =typeof value.max !== "number" || parseInt(item.price)<= value.max;
+        console.log(value.max)
         return brandMatch&&colorMatch  && startPriceMatch && endPriceMatch
       })
         .sort((product1, product2) => {

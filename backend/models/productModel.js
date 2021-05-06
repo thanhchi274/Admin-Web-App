@@ -35,18 +35,15 @@ const productSchema = Schema(
     },
     category: {
       type: String,
-      required: true,
     },
     shortDetails:{
       type:String
     },
     description: {
       type: String,
-      required: true,
     },
     rating: {
       type: Number,
-      required: true,
       default: 0,
     },
     manufactureDate: {

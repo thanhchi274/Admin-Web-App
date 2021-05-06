@@ -1,7 +1,7 @@
 import FILTER_ACTION_TYPES from "./filter.type.js";
 const INITIAL_STATE = {
   brand: [],
-  value: { min:100 , max: 1000 },
+  value: { min:1 , max: 10000000 },
   sortBy: "",
 };
 const filterReducer = (state = INITIAL_STATE, action) => {

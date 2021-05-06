@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -13,4 +13,4 @@ const app = (
     </Provider>
 );
 ReactDOM.render(app, document.getElementById('root'));
-serviceWorker.unregister();
+serviceWorkerRegistration.register();

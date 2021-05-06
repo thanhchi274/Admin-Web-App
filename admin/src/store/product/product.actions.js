@@ -26,9 +26,9 @@ export const fetchSingleProductStart =(value)=>({
   type:ShopActionTypes.FETCH_SINGLE_PRODUCT,
   productId:value
 })
-export const changePaginationValue = (value)=>({
-  type: ShopActionTypes.PAGINATION_ITEM,
-  paginationValue:value
+export const changePagePagination = (value)=>({
+  type: ShopActionTypes.PAGINATION_ITEM_SHOP,
+  pagination:value
 })
 export const fetchSingleProductSuccess = data=>({
   type: ShopActionTypes.FETCH_SINGLE_PRODUCT_SUCCESS,
@@ -62,5 +62,40 @@ export const editProductSuccess=data=>({
 })
 export const editProductError = error=>({
   type: ShopActionTypes.EDIT_PRODUCT_ERROR,
+  payload: error
+})
+export const addProductStart = data=>({
+  type: ShopActionTypes.ADD_PRODUCT_START,
+  payload: data
+})
+export const addProductSuccess = data=>({
+  type: ShopActionTypes.ADD_PRODUCT_SUCCESS
+})
+export const addProductFailure = error=>({
+  type: ShopActionTypes.ADD_PRODUCT_FAILURE,
+  payload: error
+})
+export const hideProductStart = data=>({
+  type:ShopActionTypes.HIDE_PRODUCT_START,
+  payload: data
+})
+export const hideProductSuccess = data=>({
+  type:ShopActionTypes.HIDE_PRODUCT_SUCCESS,
+  payload: data
+})
+export const hideProductFailure = error=>({
+  type:ShopActionTypes.HIDE_PRODUCT_FAILURE,
+  payload: error
+})
+export const deleteProductStart = data=>({
+  type:ShopActionTypes.REMOVE_PRODUCT_START,
+  payload: data
+})
+export const deleteProductSuccess = data=>({
+  type:ShopActionTypes.REMOVE_PRODUCT_SUCCESS,
+  payload: data
+})
+export const deleteProductFailure = error=>({
+  type:ShopActionTypes.REMOVE_PRODUCT_FAILURE,
   payload: error
 })

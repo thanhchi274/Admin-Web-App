@@ -1,208 +1,241 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Card,
   CardBody,
   Row,
   Col,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledTooltip,
   Input,
   Label,
   Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import classnames from "classnames";
 import { MDBDataTable } from "mdbreact";
 import "./datatables.scss";
-//Import Breadcrumb
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { createStructuredSelector } from "reselect";
 import Breadcrumbs from "../../components/Common/Breadcrumb";
-class Orders extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      breadcrumbItems: [
-        { title: "Ecommerce", link: "#" },
-        { title: "Orders", link: "#" },
-      ],
-      activeTab: "1",
-    };
-    this.toggleTab = this.toggleTab.bind(this);
-  }
+import {
+  fetchOrderStart,
+  changeDisplayOrderList,
+  changePaginationValue
+} from "../../store/analysis/analysis.actions";
+import { makeStyles } from "@material-ui/core/styles";
+import Pagination from "@material-ui/lab/Pagination";
+import DropDownComponent from '../../components/DropDownComponent/dropDown.component'
+import { connect } from "react-redux";
+import {
+  selectOrderData,
+  selectDisplayOrderData,
+  selectPaginationValue,selectOrderHistorySize
+} from "../../store/analysis/analysis.selectors";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      marginTop: theme.spacing(2),
+    },
+    "& .MuiPaginationItem-root": {
+      color: "#fff",
+    },
+    "& .MuiPagination-ul": {
+      justifyContent: "flex-end",
+    },
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    "& .MuiFormLabel-root": {
+      color: "#fff",
+    },
+    "& .MuiInputBase-root": {
+      color: "#fff",
+    },
+    "& .MuiSelect-icon": {
+      color: "#fff",
+    },
+    "& .MuiInput-underline": {
+      color: "#fff",
+    },
+  },
+}));
 
-  toggleTab(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
+const Orders = ({
+  fetchOrderStart,
+  orderData,
+  displayOrder,
+  changeDisplayOrderList,
+  paginationValue,
+  changePaginationValue,orderHistorySize
+}) => {
+  const classes = useStyles();
+  const [breadCrumbItems, setBreadCrumbItems] = useState([
+    { title: "Ecommerce", link: "#" },
+    { title: "Orders", link: "#" },
+  ]);
+  const [rowsData, setRowsData] = useState()
+  const [pagination, setPagination] = useState(1)
+  useEffect(() => {
+    fetchOrderStart();
+  }, [fetchOrderStart]);
+  useEffect(() => {
+    displayData()
+  }, [orderData])
+  useEffect(() => {
+    setPagination(paginationValue)
+    return () => {
+      setPagination(1)
     }
+  }, [paginationValue])
+  const handleChange = (event) => {
+    changeDisplayOrderList(event.target.value);
+  };
+  const handleChangePagination =(event, value)=>{
+    setPagination(value)
+    changePaginationValue(value)
   }
-
-  componentDidMount() {
-    document
-      .getElementsByClassName("pagination")[0]
-      .classList.add("pagination-rounded");
-  }
-
-  render() {
-    const data = {
-      columns: [
-        {
-          label: (
-            <div className="custom-control custom-checkbox">
-              {" "}
-              <Input
-                type="checkbox"
-                className="custom-control-input"
-                id="ordercheck"
-              />
-              <Label className="custom-control-label" htmlFor="ordercheck">
-                &nbsp;
-              </Label>
-            </div>
-          ),
-          field: "checkbox",
-          sort: "asc",
-          width: 28,
-        },
-        {
-          label: "Order ID",
-          field: "id",
-          sort: "asc",
-          width: 78,
-        },
-        {
-          label: "Date",
-          field: "date",
-          sort: "asc",
-          width: 93,
-        },
-        {
-          label: "Billing Name",
-          field: "billingName",
-          sort: "asc",
-          width: 109,
-        },
-        {
-          label: "Total",
-          field: "total",
-          sort: "asc",
-          width: 48,
-        },
-        {
-          label: "Payment Status",
-          field: "status",
-          sort: "asc",
-          width: 135,
-        },
-        {
-          label: "Invoice",
-          field: "invoice",
-          sort: "asc",
-          width: 110,
-        },
-        {
-          label: "Action",
-          field: "action",
-          sort: "asc",
-          width: 120,
-        },
-      ],
-      rows: [
-        {
-          checkbox: (
-            <div className="custom-control custom-checkbox">
-              <Input
-                type="checkbox"
-                className="custom-control-input"
-                id="ordercheck10"
-              />
-              <Label className="custom-control-label" htmlFor="ordercheck10">
-                &nbsp;
-              </Label>
-            </div>
-          ),
-          id: (
-            <Link to="#" className="text-dark font-weight-bold">
-              #NZ1565
-            </Link>
-          ),
-          date: "04 Apr, 2020",
-          billingName: "Walter Brown",
-          total: "$172",
-          status: (
-            <div className="badge badge-soft-success font-size-12">Paid</div>
-          ),
-          invoice: (
-            <Button className="btn-rounded" color="light">
-              Invoice <i className="mdi mdi-download ml-2"></i>
-            </Button>
-          ),
-          action: (
-            <>
-              <Link to="#" className="mr-3 text-primary" id="edit10">
-                <i className="mdi mdi-pencil font-size-18"></i>
+  const columns = [
+    {
+      label: "Order ID",
+      field: "id",
+      sort: "asc",
+      width: 78,
+    },
+    {
+      label: "Date",
+      field: "date",
+      sort: "asc",
+      width: 93,
+    },
+    {
+      label: "Billing Name",
+      field: "billingName",
+      sort: "asc",
+      width: 109,
+    },
+    {
+      label: "Total (VND)",
+      field: "total",
+      sort: "asc",
+      width: 48,
+    },
+    {
+      label: "Payment Status",
+      field: "status",
+      sort: "asc",
+      width: 135,
+    },
+    {
+      label: "Invoice",
+      field: "invoice",
+      sort: "asc",
+      width: 110,
+    },
+    {
+      label: "Action",
+      field: "action",
+      sort: "asc",
+      width: 120,
+    },
+  ];
+  const displayData = () => {
+    let rows = [];
+    console.log(orderData);
+    let item = orderData!==null
+      ? orderData.map((item, index) =>
+          item?rows.push({
+            checkbox: (
+              <div key={index} className="custom-control custom-checkbox">
+                <Input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id={index}
+                />
+                <Label className="custom-control-label" htmlFor={index}>
+                  &nbsp;
+                </Label>
+              </div>
+            ),
+            id: (
+              <Link to="#" key={index} className="text-dark font-weight-bold">
+                   {item.transactions_id}
               </Link>
-              <UncontrolledTooltip placement="top" target="edit10">
-                Edit
-              </UncontrolledTooltip>
-            </>
-          ),
-        },
-      ],
-    };
-    return (
-      <React.Fragment>
-        <div className="page-content">
-          <Container fluid>
-            <Breadcrumbs
-              title="Orders"
-              breadcrumbItems={this.state.breadcrumbItems}
-            />
-            <Row>
-              <Col lg={12}>
-                <Card>
-                  <CardBody className="pt-0">
-                    <Nav tabs className="nav-tabs-custom mb-4">
-                      <NavItem>
-                        <NavLink
-                          onClick={() => {
-                            this.toggleTab("1");
-                          }}
-                          className={classnames(
-                            { active: this.state.activeTab === "1" },
-                            "font-weight-bold p-3"
-                          )}
-                        >
-                          All Orders
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          onClick={() => {
-                            this.toggleTab("2");
-                          }}
-                          className={classnames(
-                            { active: this.state.activeTab === "2" },
-                            "p-3 font-weight-bold"
-                          )}
-                        >
-                          Newest
-                        </NavLink>
-                      </NavItem>
-                    </Nav>
-                    <MDBDataTable responsive data={data} className="mt-4" />
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
+            ),
+            date:  `${item.createAt}`,
+            billingName: `${item.userID? item.userID.slice(18):null}`,
+            total: `${item.amount}`,
+            status: (
+              <div className="badge badge-soft-success font-size-12">{item.status}</div>
+            ),
+            invoice: (
+              <Button className="btn-rounded" color="light">
+                Print Invoice <i className="mdi mdi-download ml-2"></i>
+              </Button>
+            ),
+            action: (
+              <DropDownComponent data={item}/>
+            ),
+          }):null
+        )
+      : null;
+      setRowsData(rows)
+  };
+  return orderData!== null&&orderHistorySize!==null?(
+    <React.Fragment>
+      <div className="page-content">
+        <Container fluid>
+          <Breadcrumbs title="Orders" breadcrumbItems={breadCrumbItems} />
+          <Row>
+            <Col lg={12}>
+              <Card>
+                <CardBody className="pt-0">
+                  <FormControl className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-label">
+                      Display
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      onChange={handleChange}
+                      value={displayOrder}
+                    >
+                      <MenuItem value={10}>10</MenuItem>
+                      <MenuItem value={20}>20</MenuItem>
+                      <MenuItem value={30}>30</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <MDBDataTable displayEntries={false} paging={false} searching={false} responsive data={{"rows":rowsData,"columns":columns}} className="mt-4" />
+                  <div className={classes.root}>
+                    <Pagination onChange={handleChangePagination} page={pagination} count={orderHistorySize.length/displayOrder>1?orderHistorySize.length/displayOrder:1} color="secondary" />
+                  </div>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </React.Fragment>
+  ):(
+    <div id="preloader">
+    <div id="status">
+        <div className="spinner">
+            <i className="ri-loader-line spin-icon"></i>
         </div>
-      </React.Fragment>
-    );
-  }
-}
-
-export default Orders;
+    </div>
+</div>
+  );
+};
+const mapStateToProps = createStructuredSelector({
+  orderData: selectOrderData,
+  displayOrder: selectDisplayOrderData,
+  paginationValue:selectPaginationValue,
+  orderHistorySize:selectOrderHistorySize
+});
+const mapDispatchToProps = (dispatch) => ({
+  fetchOrderStart: () => dispatch(fetchOrderStart()),
+  changeDisplayOrderList: (data) => dispatch(changeDisplayOrderList(data)),
+  changePaginationValue: (data) => dispatch(changePaginationValue(data))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

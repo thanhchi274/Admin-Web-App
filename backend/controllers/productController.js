@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 var _ = require('lodash');
 const getProducts = asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page)||2;
-  const perPage = 29;
+  const perPage = 20;
   let drop =(page -1)*perPage
   const product = await ProductShop.find();
   product
@@ -52,6 +52,14 @@ const updateProduct = asyncHandler(async (req, res) => {
     ? res.status(200).json({ message: "update the product successfully" })
     : res.status(404).json({ message: "Not found the product" });
 });
+const updateQuantityProduct = asyncHandler(async (req, res) => {
+  const product = await ProductShop.findById(req.query.id)
+  let currentStock =product.stock-req.body.stock
+  const updateProduct = await ProductShop.updateOne({ _id: req.query.id }, {"stock":currentStock});
+  updateProduct
+  ? res.status(200).json({ message: "update the product quantity successfully" })
+  : res.status(404).json({ message: "Not found the product" });
+})
 const updateProducts = asyncHandler(async (req, res) => {
   let filter = req.body;
   let condition = req.query;
@@ -91,6 +99,7 @@ module.exports = {
   getSales,
   getRelatedItems,
   createProduct,
+  updateQuantityProduct,
   updateProduct,
   updateProducts,
   deleteProduct,

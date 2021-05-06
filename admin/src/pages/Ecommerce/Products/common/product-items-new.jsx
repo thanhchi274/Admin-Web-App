@@ -9,6 +9,7 @@ const ProductItems = ({ data }) => {
           <div className="product-ribbon badge badge-primary">
             - {data.discount} %
           </div>
+          {/* {console.log(data)} */}
           <img
             src={data.variants[0].images}
             lt=""

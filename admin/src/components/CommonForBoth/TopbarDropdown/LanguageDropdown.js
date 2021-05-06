@@ -9,8 +9,6 @@ import {
 //i18n
 import i18n from "../../../i18n";
 import { withTranslation } from "react-i18next";
-
-// flags
 import { ReactComponent as US_Flag } from "../../../assets/SVG/united-states.svg";
 import { ReactComponent as VN_Flag } from "../../../assets/SVG/vietnam.svg";
 import { ReactComponent as NIPPON_Flag } from "../../../assets/SVG/japan.svg";

@@ -25,13 +25,15 @@ import {
   selectIsDataFetching,
 } from "../../store/product/product.selectors";
 import _ from "lodash";
-import { fetchSingleProductStart } from "../../store/product/product.actions";
+import { fetchSingleProductStart,hideProductStart,deleteProductStart } from "../../store/product/product.actions";
 import { connect } from "react-redux";
 import SmallImages from "./Products/common/small-image";
 const ProductDetail = ({
   fetchSingleProductStart,
   isFetching,
   singleProduct,
+  hideProductStart,
+  deleteProductStart,
   ...otherProps
 }) => {
   const [breadcrumbItems, setbreadcrumbItems] = useState([
@@ -82,6 +84,12 @@ const ProductDetail = ({
   const handleEdit = () => {
     history.push(`/product-edit/${otherProps.match.params.id}`);
   };
+  const handleHideProduct =(data)=>{
+    hideProductStart(data)
+  }
+  const handleRemoveProduct = (data) => {
+    deleteProductStart(otherProps.match.params.id)
+  }
   return ( singleProduct && (isFetching === false)) ? (
     <React.Fragment>
       <div className="page-content">
@@ -124,7 +132,7 @@ const ProductDetail = ({
                               ))}
                             </Slider>
                             <Row className="text-center mt-2">
-                              <Col sm={6}>
+                              <Col sm={4}>
                                 <Button
                                   color="success"
                                   block
@@ -132,17 +140,29 @@ const ProductDetail = ({
                                   onClick={handleEdit}
                                   className="waves-effect waves-light mt-2 mr-1"
                                 >
-                                  Edit this product
+                                  Edit
                                 </Button>
                               </Col>
-                              <Col sm={6}>
+                              <Col sm={4}>
+                                <Button
+                                  color="warning"
+                                  block
+                                  type="button"
+                                  onClick ={()=>handleHideProduct(singleProduct)}
+                                  className="waves-effect waves-light mt-2 mr-1"
+                                >
+                                  Hide
+                                </Button>
+                              </Col>
+                              <Col sm={4}>
                                 <Button
                                   color="danger"
                                   block
                                   type="button"
+                                  onClick ={()=>handleRemoveProduct(singleProduct)}
                                   className="waves-effect waves-light mt-2 mr-1"
                                 >
-                                  Delete this product
+                                  Delete
                                 </Button>
                               </Col>
                             </Row>
@@ -324,5 +344,7 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchSingleProductStart: (data) => dispatch(fetchSingleProductStart(data)),
+  hideProductStart: (data) => dispatch(hideProductStart(data)),
+  deleteProductStart: (data) => dispatch(deleteProductStart(data))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

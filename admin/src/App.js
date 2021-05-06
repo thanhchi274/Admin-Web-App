@@ -36,6 +36,7 @@ const App = ({ checkUserSession, currentUser }) => {
               layout={Layout}
               component={route.component}
               key={idx}
+              isAuthProtected={true}
             />
           ))}
         </Switch>

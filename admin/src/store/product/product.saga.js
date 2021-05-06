@@ -2,10 +2,9 @@ import { takeLatest, call, put, all,select } from "redux-saga/effects";
 import ShopActionTypes from "./product.types";
 import axios from "axios";
 import _ from "lodash"
-import { fetchDataError, fetchDataSuccess,fetchSingleProductSuccess,fetchSingleProductError,fetchRelateProductSuccess,fetchSearchSuccess,fetchSearchFailure,resetSingleProduct, editProductSuccess, editProductError} from "./product.actions";
+import { fetchDataError, fetchDataSuccess,fetchSingleProductSuccess,fetchSingleProductError,fetchRelateProductSuccess,fetchSearchSuccess,fetchSearchFailure,resetSingleProduct, editProductSuccess, editProductError,addProductSuccess,addProductFailure,hideProductSuccess,hideProductFailure,deleteProductFailure,deleteProductSuccess} from "./product.actions";
 import {selectPaginationValue,selectProductRelatedTag} from './product.selectors'
 import {
-  firestore,
   cloudStorage
 } from "../../firebase/firebase.util";
 let lst1 = []
@@ -13,6 +12,9 @@ let populateData2 = data => {
   lst1.push(data);
 };
 let searchArr = []
+let oldImagesArr = []
+let variants = []
+let newProductVariantsArr = []
 let populateSearch = data=>{
   searchArr.push(data);
 }
@@ -28,6 +30,7 @@ export function* fetchSearchAsync(props){
 export function* fetchDataAsync() {
   try {
     let paginationValue =yield select(selectPaginationValue)
+    console.log(paginationValue)
     yield axios.get(`${process.env.REACT_APP_BASE_URL}/products/?page=${paginationValue}`).then(res=> populateData2(res.data));
     yield put(fetchDataSuccess(lst1));
     lst1=[]
@@ -54,6 +57,12 @@ export function* fetchDataStart() {
     fetchDataAsync
   );
 }
+export function* changePagePagination(){
+  yield takeLatest(
+    ShopActionTypes.PAGINATION_ITEM_SHOP,
+    fetchDataAsync
+  );
+}
 export function* fetchSingleProductStart() {
   yield takeLatest(
     ShopActionTypes.FETCH_SINGLE_PRODUCT,
@@ -66,67 +75,124 @@ export function* fetchSearchDataStart() {
     fetchSearchAsync
   );
 }
+export function* addProductStart(){
+  yield takeLatest(ShopActionTypes.ADD_PRODUCT_START, addProductAsync)
+}
+export function* addProductAsync({payload,files}){
+  try {
+    if(!payload.files){
+      yield axios.post(`${process.env.REACT_APP_BASE_URL}/products/create_product`, payload.product)
+      yield put(addProductSuccess())
+      yield alert('Update Successfully')
+      yield window.location.reload()
+    }
+    else{
+        let file0 = yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[0].name}`).put(payload.files[0])
+        let file1 =payload.files[1]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[1].name}`).put(payload.files[2]):null
+        let file2 =payload.files[2]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[2].name}`).put(payload.files[2]):null
+        let file3 =payload.files[3]?yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[3].name}`).put(payload.files[3]):null
+        const itemDownload0 = yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[0].name}`)
+        const itemDownload1 =payload.files[1]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[1].name}`):null
+        const itemDownload2 =payload.files[2]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[2].name}`):null
+        const itemDownload3 =payload.files[3]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[3].name}`):null
+        const itemUrl0 = yield itemDownload0.getDownloadURL().then(url=>url)
+        const itemUrl1 =payload.files[1]? yield itemDownload1.getDownloadURL().then(url=>url):null
+        const itemUrl2 =payload.files[2]? yield itemDownload2.getDownloadURL().then(url=>url):null
+        const itemUrl3 =payload.files[3]? yield itemDownload3.getDownloadURL().then(url=>url):null
+        let currentItem0 ={"images":itemUrl0}
+        let currentItem1 =itemUrl1?{"images":itemUrl1}:null
+        let currentItem2 =itemUrl2?{"images":itemUrl2}:null
+        let currentItem3 =itemUrl3?{"images":itemUrl3}:null
+        yield newProductVariantsArr.push(currentItem0)
+        yield currentItem1!==null?newProductVariantsArr.push(currentItem1):null
+        yield currentItem2!==null?newProductVariantsArr.push(currentItem2):null
+        yield currentItem3!==null?newProductVariantsArr.push(currentItem3):null
+        let newProduct ={...payload.newProduct,"variants":newProductVariantsArr}
+        yield axios.post(`${process.env.REACT_APP_BASE_URL}/products/create_product`, newProduct)
+        // yield put(addProductSuccess())
+        // yield alert('Update Successfully')
+        // yield window.location.reload()
+    }
+  } catch (error) {
+    yield alert('Update Failed')
+    yield put(addProductFailure(error))
+  }
+  }
 export function* editProductStart(){
 yield takeLatest(ShopActionTypes.EDIT_PRODUCT_START, editProductAsync)
 }
-export function* editProductAsync({payload}){
+export function* editProductAsync({payload,files}){
 try {
   if(!payload.files){
     yield axios.put(`${process.env.REACT_APP_BASE_URL}/products/updateProduct/?id=${payload.product._id}`, payload.product)
+    yield put(editProductSuccess())
+    yield alert('Update Successfully')
+    yield window.location.reload()
   }
   else{
-    if(payload.files.length===1){
-      yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[0].name}`).put(payload.files[0])
-      const itemDownload = yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[0].name}`)
-      const itemUrl = yield itemDownload.getDownloadURL().then(url=>url)
+      let file0 = yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[0].name}`).put(payload.files[0])
+      let file1 =payload.files[1]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[1].name}`).put(payload.files[2]):null
+      let file2 =payload.files[2]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[2].name}`).put(payload.files[2]):null
+      let file3 =payload.files[3]?yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[3].name}`).put(payload.files[3]):null
+      const itemDownload0 = yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[0].name}`)
+      const itemDownload1 =payload.files[1]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[1].name}`):null
+      const itemDownload2 =payload.files[2]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[2].name}`):null
+      const itemDownload3 =payload.files[3]? yield cloudStorage.ref(`/Product_Images`).child(`Photo ${payload.files[3].name}`):null
+      const itemUrl0 = yield itemDownload0.getDownloadURL().then(url=>url)
+      const itemUrl1 =payload.files[1]? yield itemDownload1.getDownloadURL().then(url=>url):null
+      const itemUrl2 =payload.files[2]? yield itemDownload2.getDownloadURL().then(url=>url):null
+      const itemUrl3 =payload.files[3]? yield itemDownload3.getDownloadURL().then(url=>url):null
+      yield payload.product.variants.map((item,index)=>oldImagesArr.push(decodeURI(item.images).slice(89,-53)))
+      yield oldImagesArr!==[]?oldImagesArr.map((item,index)=>{
+        cloudStorage.ref(`/Product_Images`).child(item).delete().then((res) => {
+        }).catch((error) => {
+          console.log('success')
+        });
+      }):null
+      let currentItem0 ={"images":itemUrl0}
+      let currentItem1 =itemUrl1?{"images":itemUrl1}:null
+      let currentItem2 =itemUrl2?{"images":itemUrl2}:null
+      let currentItem3 =itemUrl3?{"images":itemUrl3}:null
+      yield payload.product.variants ===[]
+      yield variants.push(currentItem0)
+      yield currentItem1!==null?variants.push(currentItem1):null
+      yield currentItem2!==null?variants.push(currentItem2):null
+      yield currentItem3!==null?variants.push(currentItem3):null
+      let newProduct ={...payload.product,variants}
+      yield axios.put(`${process.env.REACT_APP_BASE_URL}/products/updateProduct/?id=${payload.product._id}`, newProduct)
+      yield put(editProductSuccess())
+      yield alert('Update Successfully')
       yield window.location.reload()
-    }
-    // if(payload.files.length===4){
-    //   yield cloudStorage.ref(`/upload_document/${files[2].Faulty}`).child(`${currentUser.email}`).child(files[0].name).put(files[0])
-    //   yield cloudStorage.ref(`/upload_document/${files[2].Faulty}`).child(`${currentUser.email}`).child(files[1].name).put(files[1])
-    //   const itemDownload1 = yield cloudStorage.ref(`/upload_document/${files[2].Faulty}`).child(`${currentUser.email}`).child(files[0].name)
-    //   const itemDownload2 = yield cloudStorage.ref(`/upload_document/${files[2].Faulty}`).child(`${currentUser.email}`).child(files[1].name)
-    //   const itemUrl1 = yield itemDownload1.getDownloadURL().then(url=>url)
-    //   const itemUrl2 = yield itemDownload2.getDownloadURL().then(url=>url)
-    //   let userUploadData = {
-    //     id:currentUser.id,
-    //     link:itemUrl1,
-    //     link2:itemUrl2,
-    //     createAt:toString(timeNow),
-    //     status:"Submitted",
-    //     end:files[2].End,
-    //     faulty:files[2].Faulty,
-    //     start:files[2].Start,
-    //     form:files[3].dateChoose,
-    //     email:currentUser.email
-    //   }
-    //   yield firestore.collection('magazinePost').where('id','==', currentUser.id).where('faulty','==',files[2].Faulty).where('form','==',files[3].dateChoose).get().then((querySnapshot)=>  querySnapshot.forEach((doc) => {
-    //     return populateData({...doc.data(),"keyID":doc.id})
-    //     }))
-    //     if(existsData.length>0){
-    //       yield firestore.collection('magazinePost').doc(`${existsData[0].keyID}`).update(userUploadData)
-    //     }
-    //     else{
-    //       yield firestore.collection('magazinePost').add(userUploadData);
-    //     }
-    //   yield firestore.collection('downloadLink').add({"link":itemUrl1,"name":files[0].name})
-    //   yield firestore.collection('downloadLink').add({"link":itemUrl2,"name":files[1].name})
-    //   yield firestore.collection("mail").add(Email)
-    //   .then(() => console.log("Queued email for delivery!"));
-    //   yield alert('Success Upload')
-    //   yield put(uploadDataSuccess())
-    //   yield existsData=[]
-    //   yield window.location.reload()
-    // }
   }
-  yield put(editProductSuccess())
-  yield alert('Update Successfully')
-  yield window.location.reload()
 } catch (error) {
   yield alert('Update Failed')
   yield put(editProductError(error))
 }
 }
+
+export function* hideProductStart(){
+  yield takeLatest(ShopActionTypes.HIDE_PRODUCT_START, hideProductAsync)
+  }
+  export function* hideProductAsync({payload}){
+    try {
+    yield axios.put(`${process.env.REACT_APP_BASE_URL}/products/updateProduct/?id=${payload._id}`,{"stock":"0"})
+      yield put(hideProductSuccess())
+      yield alert('Hide Product Successfully')
+    } catch (error) {
+     yield put(hideProductFailure())
+    }
+}
+export function* removeProductStart(){
+  yield takeLatest(ShopActionTypes.REMOVE_PRODUCT_START, removeProductAsync)
+}
+export function* removeProductAsync({payload}){
+  try {
+    yield axios.put(`${process.env.REACT_APP_BASE_URL}/products/delete_item/?id=${payload._id}`)
+    yield put(deleteProductSuccess())
+  } catch (error) {
+    yield put(deleteProductFailure())
+  }
+}
 export function* productSagas() {
-  yield all([call(fetchDataStart), call(editProductStart), call(fetchSingleProductStart), call(fetchSearchDataStart)]);
+  yield all([call(fetchDataStart), call(editProductStart), call(fetchSingleProductStart), call(fetchSearchDataStart), call(changePagePagination), call(addProductStart), call(hideProductStart),removeProductStart]);
 }

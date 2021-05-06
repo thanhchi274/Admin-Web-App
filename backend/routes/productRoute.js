@@ -1,5 +1,5 @@
 const { getProducts, getProductById,getCategory,getSales,getRelatedItems,deleteProduct,deleteProducts,
-          searchProducts,updateProduct,updateProducts,createProduct,postCommentProduct} =require( "../controllers/productController.js");
+          searchProducts,updateProduct,updateProducts,createProduct,updateQuantityProduct,postCommentProduct} =require( "../controllers/productController.js");
 const {getComment, getCommentById } = require("../controllers/commentController")
 const express =require( 'express')
 const router = express.Router()
@@ -16,6 +16,7 @@ router.post('/post_comment',postCommentProduct)
 // //PUT
 router.put('/updateProduct',updateProduct)
 router.put('/updateProducts',updateProducts)
+router.put('/changeStatus',updateQuantityProduct)
 // //DELETE
 router.delete('/delete_item',deleteProduct)
 router.delete('/delete_items',deleteProducts)
